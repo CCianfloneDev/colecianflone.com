@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router";
 const navItems = [
   { to: "/", label: "About Me" },
   { to: "/projects", label: "Projects" },
+  { to: "/blog", label: "Blog" }, // <-- Add this line
   { to: "/contact", label: "Contact Me" },
 ];
 
