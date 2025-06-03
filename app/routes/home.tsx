@@ -9,5 +9,14 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <AboutSection />;
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh]">
+      <img
+        src="/profile.jpg"
+        alt="Cole Cianflone"
+        className="w-40 h-40 rounded-full shadow-lg mb-6 object-cover"
+      />
+      <AboutSection />
+    </div>
+  );
 }
