@@ -58,22 +58,30 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+    if (error.status === 404) {
+      message = "404 - Page Not Found";
+      details = "Sorry, the page you are looking for does not exist.";
+    } else {
+      message = "Error";
+      details = error.statusText || details;
+    }
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main className="pt-16 p-4 container mx-auto text-center">
+      <h1 className="text-5xl font-bold mb-4">{message}</h1>
+      <p className="mb-6">{details}</p>
+      <a
+        href="/"
+        className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+      >
+        Go Home
+      </a>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="w-full p-4 overflow-x-auto text-left mt-6 bg-gray-100 dark:bg-gray-800 rounded">
           <code>{stack}</code>
         </pre>
       )}
