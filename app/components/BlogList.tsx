@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 type BlogMeta = {
   slug: string;
@@ -9,20 +10,19 @@ type BlogMeta = {
 
 type BlogListProps = {
   posts: BlogMeta[];
-  onSelect: (post: BlogMeta) => void;
 };
 
-export default function BlogList({ posts, onSelect }: BlogListProps) {
+export default function BlogList({ posts }: BlogListProps) {
   return (
     <ul className="mb-6">
       {posts.map((post) => (
         <li key={post.slug} className="mb-2">
-          <button
+          <Link
             className="text-blue-600 underline"
-            onClick={() => onSelect(post)}
+            to={`/blog/${post.slug}`}
           >
             {post.title} <span className="text-gray-500 text-sm">({post.date})</span>
-          </button>
+          </Link>
         </li>
       ))}
     </ul>
