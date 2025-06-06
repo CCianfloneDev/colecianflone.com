@@ -13,7 +13,6 @@ Welcome to my portfolio blog! This guide will help you get started with the proj
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
 - [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
 - [Deploying to Cloudflare Pages](#deploying-to-cloudflare-pages)
   - [1. Push Your Code to GitHub](#1-push-your-code-to-github)
   - [2. Create a New Project on Cloudflare Pages](#2-create-a-new-project-on-cloudflare-pages)
