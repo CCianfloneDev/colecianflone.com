@@ -1,5 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkSlug from "remark-slug";
 
 type BlogMeta = {
   slug: string;
@@ -26,7 +28,9 @@ export default function BlogPost({ post, content, onBack }: BlogPostProps) {
       <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
       <div className="text-gray-500 mb-4">{post.date}</div>
       <div className="prose dark:prose-invert">
-        <ReactMarkdown>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm as any, remarkSlug as any]}
+        >
           {content}
         </ReactMarkdown>
       </div>
