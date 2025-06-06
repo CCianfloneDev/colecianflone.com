@@ -51,11 +51,6 @@ Visit [http://localhost:3000](http://localhost:3000) to view the site.
 - `/app/` — Source code (routes, components, styles)
 - `/public/` — Static assets (images, manifest, etc.)
 - `/build/` — Production build output (after running `npm run build`)
-
-## Contributing
-
-Feel free to open issues or submit pull requests!
-
 ---
 
 ## Deploying to Cloudflare Pages
