@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import fg from "fast-glob";
 import { fileURLToPath } from "url";
+import { marked } from "marked"; // Add this import
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,11 +23,14 @@ async function buildIndex() {
   const posts = files.map((file) => {
     const filePath = path.join(BLOG_DIR, file);
     const raw = fs.readFileSync(filePath, "utf8");
-    const { data } = matter(raw);
+    const { data, content } = matter(raw);
 
     // Use last modified date of the file, formatted as dd-MMM-yyyy
     const stats = fs.statSync(filePath);
     const formattedDate = formatDate(stats.mtime);
+
+    // Render markdown to HTML
+    const html = marked(content);
 
     return {
       title: data.title || file.replace(/\.md$/, ""),
@@ -34,6 +38,7 @@ async function buildIndex() {
       file,
       date: formattedDate,
       description: data.description || "",
+      html,
     };
   });
 

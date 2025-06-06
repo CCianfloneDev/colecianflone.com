@@ -30,18 +30,11 @@ export default function BlogSlug() {
   useEffect(() => {
     fetch("/blog/blog-index.json")
       .then((res) => res.json())
-      .then((posts: BlogMeta[]) => {
+      .then((posts: (BlogMeta & { html?: string })[]) => {
         const found = posts.find((p) => p.slug === slug) || null;
         setPost(found);
-        if (found) {
-          fetch(`/blog/${found.file}`)
-            .then((res) => res.text())
-            .then((raw) => {
-              // Remove YAML frontmatter if present
-              const content = raw.replace(/^---[\s\S]*?---\s*/, "");
-              setContent(content);
-            });
-        }
+        // No need to fetch markdown file or parse frontmatter anymore
+        setContent(""); // Optionally remove this line
       });
   }, [slug]);
 
@@ -62,7 +55,7 @@ export default function BlogSlug() {
 
   return (
     <section className="max-w-2xl mx-auto px-6 py-8">
-      <BlogPost post={post} content={content} onBack={() => navigate("/blog")} />
+      <BlogPost post={post} onBack={() => navigate("/blog")} />
     </section>
   );
 }
