@@ -3,6 +3,23 @@ import { Outlet, useLocation } from "react-router";
 import BlogList from "../components/BlogList";
 import type { BlogMeta } from "../types/blog";
 
+export function meta() {
+  return [
+    { title: "Blog | Cole Cianflone" },
+    { name: "description", content: "Read articles and guides on my portfolio blog." },
+    { property: "og:title", content: "Blog | Cole Cianflone" },
+    { property: "og:description", content: "Read articles and guides on my portfolio blog." },
+    { property: "og:type", content: "website" },
+    { property: "og:image", content: "/profile.jpg" },
+    { property: "og:url", content: "https://colecianflone.com/blog" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Blog | Cole Cianflone" },
+    { name: "twitter:description", content: "Read articles and guides on my portfolio blog." },
+    { name: "twitter:image", content: "/profile.jpg" },
+    { rel: "canonical", href: "https://colecianflone.com/blog" },
+  ];
+}
+
 export default function Blog() {
   const [posts, setPosts] = useState<BlogMeta[]>([]);
   const location = useLocation();

@@ -3,6 +3,24 @@ import { useParams, useNavigate } from "react-router";
 import BlogPost from "../components/BlogPost";
 import type { BlogMeta } from "../types/blog";
 
+export function meta({ params }: { params: { slug: string } }) {
+  const slug = params.slug;
+  return [
+    { title: "Blog Post | Cole Cianflone" },
+    { name: "description", content: "Read this blog post on my portfolio." },
+    { property: "og:title", content: "Blog Post | Cole Cianflone" },
+    { property: "og:description", content: "Read this blog post on my portfolio." },
+    { property: "og:type", content: "article" },
+    { property: "og:image", content: "/profile.jpg" },
+    { property: "og:url", content: `https://colecianflone.com/blog/${slug}` },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Blog Post | Cole Cianflone" },
+    { name: "twitter:description", content: "Read this blog post on my portfolio." },
+    { name: "twitter:image", content: "/profile.jpg" },
+    { rel: "canonical", href: `https://colecianflone.com/blog/${slug}` },
+  ];
+}
+
 export default function BlogSlug() {
   const { slug } = useParams();
   const navigate = useNavigate();
