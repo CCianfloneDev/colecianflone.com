@@ -3,7 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import fg from "fast-glob";
 import { fileURLToPath } from "url";
-import { marked } from "marked"; // Add this import
+import { marked } from "marked";
+import GithubSlugger from "github-slugger";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,7 +30,19 @@ async function buildIndex() {
     const stats = fs.statSync(filePath);
     const formattedDate = formatDate(stats.mtime);
 
-    // Render markdown to HTML
+    // Use github-slugger for heading IDs
+    const slugger = new GithubSlugger();
+    slugger.reset();
+
+    marked.use({
+      renderer: {
+        heading(token) {
+          const slug = slugger.slug(token.text);
+          return `<h${token.depth} id="${slug}">${token.text}</h${token.depth}>\n`;
+        },
+      },
+    });
+
     const html = marked(content);
 
     return {
