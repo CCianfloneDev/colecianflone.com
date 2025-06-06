@@ -1,3 +1,8 @@
+---
+title: Getting started with my portfolio
+slug: getting-started
+description: A guide of how I built this portfolio.
+---
 # Getting Started
 
 Welcome to my portfolio blog! This guide will help you get started with the project.
