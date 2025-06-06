@@ -1,71 +1,104 @@
-# Welcome to My Portfolio
+# Getting Started
 
-### Installation
+Welcome to my portfolio blog! This guide will help you get started with the project.
 
-Install the dependencies:
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Project](#running-the-project)
+- [Folder Structure](#folder-structure)
+- [Deploying to Cloudflare Pages](#deploying-to-cloudflare-pages)
+  - [1. Push Your Code to GitHub](#1-push-your-code-to-github)
+  - [2. Create a New Project on Cloudflare Pages](#2-create-a-new-project-on-cloudflare-pages)
+  - [3. Configure Build Settings](#3-configure-build-settings)
+  - [4. Set Environment Variables (Optional)](#4-set-environment-variables-optional)
+  - [5. Save and Deploy](#5-save-and-deploy)
+  - [6. Configure Custom Domain (Optional)](#6-configure-custom-domain-optional)
+- [Notes](#notes)
+
+---
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+## Installation
 
 ```bash
+git clone https://github.com/colecianflone/colecianflone-portfolio.git
+cd colecianflone-portfolio
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+## Running the Project
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Visit [http://localhost:3000](http://localhost:3000) to view the site.
 
-## Building for Production
+## Folder Structure
 
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+- `/public/blog/` — Blog posts in Markdown
+- `/app/` — Source code (routes, components, styles)
+- `/public/` — Static assets (images, manifest, etc.)
+- `/build/` — Production build output (after running `npm run build`)
 
 ---
 
-Built with ❤️ using React Router.
+## Deploying to Cloudflare Pages
+
+You can easily deploy this project to [Cloudflare Pages](https://pages.cloudflare.com/):
+
+### 1. Push Your Code to GitHub
+
+Make sure your latest changes are committed and pushed to your GitHub repository.
+
+### 2. Create a New Project on Cloudflare Pages
+
+- Go to [Cloudflare Pages](https://pages.cloudflare.com/) and log in.
+- Click **Create a project** and connect your GitHub repository.
+- Select your `colecianflone-portfolio` repository.
+
+### 3. Configure Build Settings
+
+- **Framework preset:** *None* (or "Other")
+- **Build command:**  
+  ```
+  npm run build
+  ```
+- **Build output directory:**  
+  ```
+  build/client
+  ```
+- **Root directory:**  
+  ```
+  ./
+  ```
+
+### 4. Set Environment Variables (Optional)
+
+If you use any environment variables, add them under "Environment Variables".
+
+### 5. Save and Deploy
+
+Click **Save and Deploy**. Cloudflare Pages will install dependencies, build your project, and deploy it.
+
+### 6. Configure Custom Domain (Optional)
+
+After deployment, you can add a custom domain in the Cloudflare Pages dashboard.
+
+---
+
+## Notes
+
+- The production build outputs static assets to `build/client` and server code to `build/server`.
+- For Cloudflare Pages, only static assets in `build/client` are deployed.
+- If you need SSR or API endpoints, consider deploying with a Node server on a platform like [Fly.io](https://fly.io/) or [Railway](https://railway.app/).
+
+---
+
+Thanks for checking out my portfolio!
