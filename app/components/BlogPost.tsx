@@ -2,13 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkSlug from "remark-slug";
-
-type BlogMeta = {
-  slug: string;
-  title: string;
-  date: string;
-  file: string;
-};
+import type { BlogMeta } from "../types/blog";
 
 type BlogPostProps = {
   post: BlogMeta;

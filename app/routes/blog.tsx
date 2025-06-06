@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router";
 import BlogList from "../components/BlogList";
-
-type BlogMeta = {
-  slug: string;
-  title: string;
-  date: string;
-  file: string;
-};
+import type { BlogMeta } from "../types/blog";
 
 export default function Blog() {
   const [posts, setPosts] = useState<BlogMeta[]>([]);

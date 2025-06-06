@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import BlogPost from "../components/BlogPost";
-
-type BlogMeta = {
-  slug: string;
-  title: string;
-  date: string;
-  file: string;
-};
+import type { BlogMeta } from "../types/blog";
 
 export default function BlogSlug() {
   const { slug } = useParams();

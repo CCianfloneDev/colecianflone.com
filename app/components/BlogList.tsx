@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-
-type BlogMeta = {
-  slug: string;
-  title: string;
-  date: string;
-  file: string;
-};
+import type { BlogMeta } from "../types/blog";
 
 type BlogListProps = {
   posts: BlogMeta[];
@@ -17,12 +11,15 @@ export default function BlogList({ posts }: BlogListProps) {
     <ul className="mb-6">
       {posts.map((post) => (
         <li key={post.slug} className="mb-2">
-          <Link
+            <Link
             className="text-blue-600 underline"
             to={`/blog/${post.slug}`}
-          >
+            >
             {post.title} <span className="text-gray-500 text-sm">({post.date})</span>
-          </Link>
+            </Link>
+            {post.description && (
+            <div className="text-gray-700 text-sm">{post.description}</div>
+            )}
         </li>
       ))}
     </ul>
