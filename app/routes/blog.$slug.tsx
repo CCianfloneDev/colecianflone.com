@@ -24,7 +24,11 @@ export default function BlogSlug() {
         if (found) {
           fetch(`/blog/${found.file}`)
             .then((res) => res.text())
-            .then(setContent);
+            .then((raw) => {
+              // Remove YAML frontmatter if present
+              const content = raw.replace(/^---[\s\S]*?---\s*/, "");
+              setContent(content);
+            });
         }
       });
   }, [slug]);
