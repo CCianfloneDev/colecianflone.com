@@ -1,10 +1,10 @@
 [
   {
-    "title": "Getting started with my portfolio",
-    "slug": "getting-started",
-    "file": "getting-started.md",
-    "htmlFile": "getting-started.html",
-    "date": "12-Jun-2025",
-    "description": "A guide of how I built this portfolio."
+    "title": "Making and hosting this portfolio site for free!",
+    "slug": "free-portfolio",
+    "file": "free-portfolio.md",
+    "htmlFile": "free-portfolio.html",
+    "date": "13-Jun-2025",
+    "description": "A guide of how I built this portfolio and host it for completely free."
   }
 ]
