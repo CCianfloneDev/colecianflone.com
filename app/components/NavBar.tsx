@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router";
 
 const navItems = [
-  { to: "/", label: "About Me" },
+  { to: "/", label: "Cole" },
   { to: "/projects", label: "Projects" },
   { to: "/blog", label: "Blog" },
-  { to: "/contact", label: "Contact Me" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export default function NavBar() {
