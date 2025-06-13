@@ -33,7 +33,7 @@ export default function BlogSlug() {
     }
   }, [post]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return;
   if (!post) {
     return (
       <main>

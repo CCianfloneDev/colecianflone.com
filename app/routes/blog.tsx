@@ -24,7 +24,7 @@ function BlogContent() {
   const location = useLocation();
   const isBlogIndex = location.pathname === "/blog";
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return;
   if (error) return <div>Error loading blog posts.</div>;
 
   return (
