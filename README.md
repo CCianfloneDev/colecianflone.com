@@ -53,7 +53,7 @@ Your application will be available at `http://localhost:5173`.
 Generate types for your Cloudflare bindings in `wrangler.json`:
 
 ```sh
-npm run typegen
+npm run cf-typegen
 ```
 
 ## Building for Production

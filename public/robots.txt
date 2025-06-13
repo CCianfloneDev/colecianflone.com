@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Disallow internal build and script directories
+Disallow: /build/
+Disallow: /scripts/
+Disallow: /react-router.config.ts
+Disallow: /tsconfig.json
+Disallow: /vite.config.ts
+Disallow: /Dockerfile
+Disallow: /README.md
+Disallow: /package.json
+
+# Allow all blog and blog-content
+Allow: /blog/
+Allow: /blog-content/
+
+# Sitemap (if you generate one)
+Sitemap: https://colecianflone.com/sitemap.xml
