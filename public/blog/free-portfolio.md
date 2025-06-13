@@ -1,7 +1,7 @@
 ---
-title: Getting started with my portfolio
-slug: getting-started
-description: A guide of how I built this portfolio.
+title: Making and hosting this portfolio site for free!
+slug: free-portfolio
+description: A guide of how I built this portfolio and host it for completely free.
 ---
 # Getting Started
 
@@ -16,14 +16,17 @@ Welcome to my portfolio blog! This guide will help you get up and running with t
 - [Writing and Building Blog Posts](#writing-and-building-blog-posts)
 - [Technology Stack](#technology-stack)
 - [Performance and Blog Rendering Evolution](#performance-and-blog-rendering-evolution)
-- [Deploying to Cloudflare Pages](#deploying-to-cloudflare-pages)
+- [Deploying to Cloudflare Workers](#deploying-to-cloudflare-workers)
   - [1. Push Your Code to GitHub](#1-push-your-code-to-github)
-  - [2. Create a New Project on Cloudflare Pages](#2-create-a-new-project-on-cloudflare-pages)
-  - [3. Configure Build Settings](#3-configure-build-settings)
-  - [4. Set Environment Variables (Optional)](#4-set-environment-variables-optional)
-  - [5. Save and Deploy](#5-save-and-deploy)
+  - [2. Install Wrangler and Authenticate](#2-install-wrangler-and-authenticate)
+  - [3. Generate Cloudflare Types](#3-generate-cloudflare-types)
+  - [4. Build the Project](#4-build-the-project)
+  - [5. Deploy to Cloudflare Workers](#5-deploy-to-cloudflare-workers)
   - [6. Configure Custom Domain (Optional)](#6-configure-custom-domain-optional)
 - [Notes](#notes)
+- [SEO and Metadata](#seo-and-metadata)
+- [Configuration Files Explained](#configuration-files-explained)
+- [Credits](#credits)
 
 ---
 
@@ -154,55 +157,136 @@ This evolution—from client-side Markdown rendering, to pre-rendered JSON, to f
 
 ---
 
-## Deploying to Cloudflare Pages
+## Deploying to Cloudflare Workers
 
-You can easily deploy this project to [Cloudflare Pages](https://pages.cloudflare.com/):
+You can easily deploy this project to [Cloudflare Workers](https://workers.cloudflare.com/):
 
 ### 1. Push Your Code to GitHub
 
 Make sure your latest changes are committed and pushed to your GitHub repository.
 
-### 2. Create a New Project on Cloudflare Pages
+### 2. Install Wrangler and Authenticate
 
-- Go to [Cloudflare Pages](https://pages.cloudflare.com/) and log in.
-- Click **Create a project** and connect your GitHub repository.
-- Select your `colecianflone-portfolio` repository.
+Install [Wrangler](https://developers.cloudflare.com/workers/wrangler/) globally if you haven't already:
 
-### 3. Configure Build Settings
+```bash
+npm install -g wrangler
+```
 
-- **Framework preset:** *None* (or "Other")
-- **Build command:**  
-  ```
-  npm run build
-  ```
-- **Build output directory:**  
-  ```
-  build/client
-  ```
-- **Root directory:**  
-  ```
-  ./
-  ```
+Log in to your Cloudflare account:
 
-### 4. Set Environment Variables (Optional)
+```bash
+npx wrangler login
+```
 
-If you use any environment variables, add them under "Environment Variables".
+### 3. Generate Cloudflare Types
 
-### 5. Save and Deploy
+Generate TypeScript types for your Cloudflare Worker environment bindings:
 
-Click **Save and Deploy**. Cloudflare Pages will install dependencies, build your project, and deploy it.
+```bash
+npm run cf-typegen
+```
+
+This command runs Wrangler's type generation, producing or updating the `worker-configuration.d.ts` file.  
+It provides type safety and autocompletion for environment variables, KV namespaces, and other bindings defined in your `wrangler.json`.  
+Keeping these types up to date helps prevent runtime errors and improves your development experience.
+
+### 4. Build the Project
+
+Generate the production build:
+
+```bash
+npm run build
+```
+
+This will output static assets to `build/client` and server code to `build/server`.
+
+### 5. Deploy to Cloudflare Workers
+
+Deploy your Worker using Wrangler:
+
+```bash
+npm run deploy
+```
+Or directly:
+```bash
+npx wrangler deploy
+```
+
+Your app will be available at your Workers subdomain (e.g., `https://your-worker.your-account.workers.dev`) or a custom domain if configured.
 
 ### 6. Configure Custom Domain (Optional)
 
-After deployment, you can add a custom domain in the Cloudflare Pages dashboard.
+You can add a custom domain to your Worker in the Cloudflare dashboard under Workers & Pages > your Worker > Triggers > Custom Domains.
 
 ---
 
 ## Notes
 
 - The production build outputs static assets to `build/client` and server code to `build/server`.
-- For Cloudflare Pages, only static assets in `build/client` are deployed.
-- If you need SSR or API endpoints, consider deploying with a Node server on a platform like [Fly.io](https://fly.io/) or [Railway](https://railway.app/).
+- For Cloudflare Workers, both static assets and server code can be deployed, depending on your routing setup.
+- If you need SSR or API endpoints, Cloudflare Workers is ideal for edge-side rendering and APIs.
+
+---
+
+## SEO and Metadata
+
+This project includes several features and scripts to improve SEO and metadata for better discoverability and sharing:
+
+- **Automatic Sitemap Generation**  
+  The script `scripts/generate-sitemap.js` runs at build time and generates a `public/sitemap.xml` file.
+  - It includes all static routes (like `/`, `/projects`, `/blog`, `/contact`) and dynamically adds all blog post URLs by reading `public/blog/blog-index.json`.
+  - This helps search engines efficiently crawl and index all pages and blog posts.
+
+- **Dynamic Metadata with meta.ts**  
+  The `app/meta.ts` file provides a utility function for generating consistent meta tags for each page and blog post.
+  - It sets Open Graph, Twitter Card, canonical, and description tags based on the page’s content.
+  - Blog posts and pages use this to ensure rich previews on social media and accurate search engine snippets.
+
+- **Structured Data for Blog Posts**  
+  Blog post pages inject [JSON-LD](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) structured data using the [BlogPosting](https://schema.org/BlogPosting) schema.
+  - This is handled in the blog post route and helps Google and other search engines understand your content for rich results.
+
+- **Pre-rendered HTML for Blog Content**  
+  Blog posts are pre-rendered to static HTML at build time, ensuring that search engines and social media scrapers see the full content immediately—no client-side rendering required.
+
+**Summary:**  
+With these efforts, your portfolio is optimized for SEO, social sharing, and discoverability out of the box.
+
+---
+
+## Configuration Files Explained
+
+This project uses several configuration files to manage building, type checking, and deployment:
+
+- **wrangler.json**  
+  Configures Cloudflare Workers deployment.  
+  - `name`: Worker name  
+  - `main`: Entry point for the Worker (e.g., `build/server/index.js`)  
+  - `compatibility_date`: Ensures consistent runtime behavior  
+  - `routes`: (optional) Custom domains/routes
+
+- **vite.config.ts**  
+  Handles Vite build and dev server settings, including React, HMR, and SSR.
+
+- **tsconfig.json / tsconfig.node.json / tsconfig.cloudflare.json**  
+  TypeScript configuration for different environments.  
+  - `tsconfig.json`: Base config  
+  - `tsconfig.node.json`: Node-specific overrides  
+  - `tsconfig.cloudflare.json`: Cloudflare Worker-specific overrides
+
+- **package.json**  
+  Project metadata, scripts, and dependencies.
+
+- **worker-configuration.d.ts**  
+  TypeScript declarations for Worker environment bindings.
+
+---
+
+## Credits
+
+This portfolio project was built using and inspired by the [React Router + Cloudflare Workers Starter Template](https://github.com/cloudflare/templates/tree/main/react-router-starter-template).  
+Special thanks to the maintainers of that template for providing a solid foundation for modern, full-stack React apps on Cloudflare Workers.
 
 ---
 
