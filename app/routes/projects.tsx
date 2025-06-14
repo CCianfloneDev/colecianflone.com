@@ -11,9 +11,13 @@ export function meta() {
 export default function Projects() {
   return (
     <main>
-      <section className="max-w-2xl mx-auto px-6 py-8 text-center">
-        <h1 className="text-3xl font-bold mb-4">Projects</h1>
-        <p className="mb-6">Welcome to my projects! Posts will appear here soon.</p>
+      <section className="max-w-2xl mx-auto px-6 py-8">
+        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">
+          Projects
+        </h1>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+          Welcome to my projects! Posts will appear here soon.
+        </p>
       </section>
     </main>
   );

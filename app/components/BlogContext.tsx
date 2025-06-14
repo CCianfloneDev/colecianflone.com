@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import type { BlogMeta } from "../types/blog";
 
-type BlogContextType = {
+interface BlogContextType {
   posts: BlogMeta[];
   loading: boolean;
-  error: any;
-};
+  error: Error | null;
+}
 
 const BlogContext = createContext<BlogContextType>({
   posts: [],
@@ -16,16 +16,19 @@ const BlogContext = createContext<BlogContextType>({
 export function BlogProvider({ children }: { children: React.ReactNode }) {
   const [posts, setPosts] = useState<BlogMeta[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     fetch("/blog/blog-index.json")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch blog posts");
+        return res.json() as Promise<BlogMeta[]>;
+      })
       .then((data) => {
-        setPosts(data as BlogMeta[]);
+        setPosts(data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         setError(err);
         setLoading(false);
       });
