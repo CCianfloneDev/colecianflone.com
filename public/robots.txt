@@ -1,19 +1,14 @@
 User-agent: *
+# Allow crawling of all content
 Allow: /
-
-# Disallow internal build and script directories
-Disallow: /build/
-Disallow: /scripts/
-Disallow: /react-router.config.ts
-Disallow: /tsconfig.json
-Disallow: /vite.config.ts
-Disallow: /Dockerfile
-Disallow: /README.md
-Disallow: /package.json
-
-# Allow all blog
+Allow: /projects/
 Allow: /blog/
 Allow: /blog-content/
+Allow: /contact/
 
-# Sitemap (if you generate one)
+
+# Ensure link following
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://colecianflone.com/sitemap.xml

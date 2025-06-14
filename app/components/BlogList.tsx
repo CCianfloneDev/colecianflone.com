@@ -12,21 +12,28 @@ export default function BlogList({ posts }: BlogListProps) {
       {posts.map((post) => (
         <li
           key={post.slug}
-          className="p-4 rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-200 hover:shadow-md"
+          className="p-4 rounded-lg border border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-200 hover:shadow-md bg-white dark:bg-gray-800"
         >
-          <Link className="block" to={`/blog/${post.slug}`}>
-            <h2 className="text-xl font-semibold text-blue-600 hover:text-blue-700 mb-1">
+          <Link
+            className="block"
+            to={`/blog/${post.slug}`}
+            aria-label={`Read ${post.title}`}
+            title={post.description || `Read ${post.title}`}
+          >
+            <h2 className="text-xl font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mb-1">
               {post.title}
             </h2>
-            <div className="text-sm text-gray-500 mb-3">{post.date}</div>
+            <div className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              {post.date}
+            </div>
             <div className="flex flex-col gap-2">
               {post.description && (
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-900 dark:text-gray-100 leading-relaxed">
                   {post.description}
                 </p>
               )}
               {post.readTime && (
-                <div className="text-sm text-gray-500 flex items-center gap-2">
+                <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
                   <svg
                     className="w-4 h-4"
                     fill="none"

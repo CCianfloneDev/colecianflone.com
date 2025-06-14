@@ -6,6 +6,10 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   background-color: #fff;
