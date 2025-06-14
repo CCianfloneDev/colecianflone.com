@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import type { BlogMeta } from "../types/blog";
-
-interface BlogListProps {
-  posts: BlogMeta[];
-}
+import type { BlogListProps } from "../types/components";
 
 export default function BlogList({ posts }: BlogListProps) {
   return (
@@ -23,6 +19,28 @@ export default function BlogList({ posts }: BlogListProps) {
             aria-label={`Read ${post.title}`}
             title={post.description || `Read ${post.title}`}
           >
+            {post.image && post.image.sizes && (
+              <div className="aspect-w-16 aspect-h-9 mb-4 overflow-hidden rounded-lg">
+                <picture>
+                  <source
+                    srcSet={`${post.image.sizes.smallUrl} 400w, 
+                ${post.image.sizes.mediumUrl} 800w, 
+                ${post.image.sizes.largeUrl} 1200w`}
+                    sizes="(max-width: 400px) 400px,
+               (max-width: 800px) 800px,
+               1200px"
+                    type="image/webp"
+                  />
+                  <img
+                    src={post.image.sizes.mediumUrl}
+                    alt={post.image.alt}
+                    className="object-cover w-full h-full transition-transform duration-200 
+                 hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            )}
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 
                          dark:hover:text-blue-400 transition-colors">
               {post.title}
