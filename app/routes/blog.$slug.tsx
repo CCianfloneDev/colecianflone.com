@@ -26,13 +26,31 @@ export default function BlogSlug() {
 
   useEffect(() => {
     if (post) {
-      fetch(`/blog-content/${post.htmlFile}`) 
-        .then((res) => res.text())
-        .then(setContent);
+      const controller = new AbortController();
+      
+      fetch(`/blog-content/${post.htmlFile}`, {
+        signal: controller.signal,
+        headers: {
+          'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400'
+        }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to load post content');
+          return res.text();
+        })
+        .then(setContent)
+        .catch(err => {
+          if (err.name !== 'AbortError') {
+            console.error('Failed to load post:', err);
+          }
+        });
+
+      return () => controller.abort();
     } else {
       setContent("");
+      return undefined;
     }
-  }, [post]);
+  }, [post?.htmlFile]);
 
   if (loading) {
     return (
