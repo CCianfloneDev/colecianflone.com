@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-[60vh] py-12">
+    <main className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12">
       <div className="relative mb-8">
         <img
           src="/profile-320w.webp"
@@ -22,7 +22,9 @@ export default function Home() {
           width={200}
           height={200}
           fetchPriority="high"
-          className="w-48 h-48 sm:w-52 sm:h-52 rounded-full shadow-lg object-cover 
+          loading="eager"
+          decoding="async"
+          className="w-40 h-40 sm:w-48 sm:h-48 rounded-full shadow-lg object-cover 
                    ring-4 ring-white dark:ring-gray-800"
         />
         <div className="absolute inset-0 rounded-full shadow-inner"></div>

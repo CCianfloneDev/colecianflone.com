@@ -5,7 +5,7 @@
     "file": "free-portfolio.md",
     "htmlFile": "free-portfolio.html",
     "date": "13-Jun-2025",
-    "description": "A step-by-step guide to building a professional portfolio site with React, TypeScript and Cloudflare Workers—completely free. Includes performance optimization tips and deployment strategies.",
+    "description": "A practical guide to building a portfolio site with React, TypeScript and Cloudflare Workers—completely free. Includes performance optimization tips and deployment strategies.",
     "readTime": "10-minute read"
   }
 ]

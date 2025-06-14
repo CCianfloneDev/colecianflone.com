@@ -30,8 +30,17 @@ function BlogContent() {
   return (
     <main>
       <section className="max-w-2xl mx-auto px-6 py-8">
-        <h1 className="text-3xl font-bold mb-4 text-center">Blog</h1>
-        {isBlogIndex && <BlogList posts={posts} />}
+        <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+          Blog
+        </h1>
+        {isBlogIndex && (
+          <div className="space-y-6">
+            <p className="text-lg text-gray-700 dark:text-gray-300">
+              Thoughts, tutorials and insights about software development.
+            </p>
+            <BlogList posts={posts} />
+          </div>
+        )}
         <Outlet />
       </section>
     </main>

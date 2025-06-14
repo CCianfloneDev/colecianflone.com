@@ -9,24 +9,31 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import "./fonts.css";
 import NavBar from "./components/NavBar";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { 
+    rel: "preload",
+    href: "/fonts/Inter-Regular.woff2",
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
+    fetchPriority: "high", 
+  },
   {
     rel: "preconnect",
-    href: "https://fonts.gstatic.com",
+    href: "/fonts/Inter-Medium.woff2",
+    as: "font",
+    type: "font/woff2",
     crossOrigin: "anonymous",
   },
-  // Preload the stylesheet for faster font fetching
   {
-    rel: "preload",
-    as: "style",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    rel: "preconnect", 
+    href: "/fonts/Inter-Bold.woff2",
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
   },
 ];
 

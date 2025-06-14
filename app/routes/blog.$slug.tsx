@@ -36,11 +36,14 @@ export default function BlogSlug() {
   if (loading) {
     return (
       <main>
-        <section className="max-w-2xl mx-auto px-6 py-8 min-h-[500px]">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mb-2"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
+        <section className="max-w-2xl mx-auto px-6 py-8">
+          <div className="animate-pulse space-y-6">
+            <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-24"></div>
+            <div className="space-y-4">
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
+            </div>
           </div>
         </section>
       </main>
@@ -51,14 +54,15 @@ export default function BlogSlug() {
     return (
       <main>
         <section className="max-w-2xl mx-auto px-6 py-8">
-          <h1 className="text-3xl font-bold mb-4 text-center text-gray-900 dark:text-white">
-            Blog
+          <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight text-center">
+            Post Not Found
           </h1>
-          <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
-            Post not found.
+          <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-6">
+            The blog post you're looking for doesn't exist.
           </p>
           <button
-            className="mx-auto block text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+            className="mx-auto block text-blue-600 hover:text-blue-700 dark:text-blue-400 
+                     dark:hover:text-blue-300 font-medium transition-colors"
             onClick={() => navigate("/blog")}
           >
             ← Back to Blog List
