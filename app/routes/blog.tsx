@@ -22,7 +22,7 @@ export default function Blog() {
     description: "Read articles and guides on my portfolio blog.",
     url: "https://colecianflone.com/blog",
     author: {
-      "@type": "Person", 
+      "@type": "Person",
       name: "Cole Cianflone",
       url: "https://colecianflone.com",
     },
