@@ -25,7 +25,7 @@ export default function AboutSection() {
         <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight" style={{ fontSize: '2.25rem' }}>
           About Me
         </h1>
-        <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300">
+        <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 content-visibility-auto">
           <p>
             Hi, I'm Cole Cianflone, a passionate Software Developer with experience in
             full-stack development, cloud technologies, and DevOps practices. I
