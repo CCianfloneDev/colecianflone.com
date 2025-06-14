@@ -1,4 +1,5 @@
-import { getBaseMeta } from "../meta";
+import { getBaseMeta } from "../types/meta";
+import type { ContactPageSchema } from "../types/schema";
 
 export function meta() {
   return getBaseMeta({
@@ -9,8 +10,28 @@ export function meta() {
 }
 
 export default function Contact() {
+  const contactSchema: ContactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact | Cole Cianflone",
+    description: "Get in touch with Cole Cianflone.",
+    url: "https://colecianflone.com/contact",
+    mainEntity: {
+      "@type": "Person",
+      name: "Cole Cianflone",
+      email: "cole@colecianflone.com",
+      url: "https://colecianflone.com",
+    },
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contactSchema),
+        }}
+      />
       <div className="max-w-2xl mx-auto px-6 py-8">
         <h1
           className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight"
