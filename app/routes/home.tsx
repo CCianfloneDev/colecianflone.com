@@ -22,6 +22,8 @@ export default function Home() {
           width={200}
           height={200}
           fetchPriority="high"
+          loading="eager"
+          decoding="async"
           className="w-40 h-40 sm:w-48 sm:h-48 rounded-full shadow-lg object-cover 
                    ring-4 ring-white dark:ring-gray-800"
         />
