@@ -11,6 +11,9 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import "./fonts.css";
 import NavBar from "./components/NavBar";
+import type { LayoutProps } from "./types/components";
+import type { PersonSchema, WebSiteSchema } from "./types/schema";
+
 
 export const links: Route.LinksFunction = () => [
   { 
@@ -37,7 +40,32 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: LayoutProps) {
+  const personSchema: PersonSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Cole Cianflone",
+    url: "https://colecianflone.com",
+    jobTitle: "Software Developer",
+    sameAs: [
+      "https://www.linkedin.com/in/colecianflone/",
+      "https://github.com/CCianfloneDev"
+    ]
+  };
+
+  const websiteSchema: WebSiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Cole Cianflone Portfolio",
+    url: "https://colecianflone.com",
+    description: "Personal portfolio and blog of Cole Cianflone, featuring web development articles and projects",
+    author: {
+      "@type": "Person",
+      name: "Cole Cianflone",
+      url: "https://colecianflone.com"
+    }
+  };
+
   return (
     <html lang="en">
       <head>
@@ -54,26 +82,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Cole Cianflone",
-              "url": "https://colecianflone.com/",
-              "sameAs": [
-                "https://www.linkedin.com/in/colecianflone/"
-              ]
-            })
+            __html: JSON.stringify(personSchema)
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "url": "https://colecianflone.com/",
-              "name": "Cole Cianflone Portfolio"
-            })
+            __html: JSON.stringify(websiteSchema)
           }}
         />
       </head>
