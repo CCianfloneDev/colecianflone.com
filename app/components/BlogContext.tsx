@@ -1,11 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import type { BlogMeta } from "../types/blog";
-
-interface BlogContextType {
-  posts: BlogMeta[];
-  loading: boolean;
-  error: Error | null;
-}
+import type { BlogContextType, BlogContextProps } from "../types/components";
 
 const BlogContext = createContext<BlogContextType>({
   posts: [],
@@ -13,7 +8,7 @@ const BlogContext = createContext<BlogContextType>({
   error: null,
 });
 
-export function BlogProvider({ children }: { children: React.ReactNode }) {
+export function BlogProvider({ children }: BlogContextProps) {
   const [posts, setPosts] = useState<BlogMeta[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
