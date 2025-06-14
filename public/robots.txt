@@ -1,13 +1,5 @@
 User-agent: *
 Allow: /
-
-# Allow crawling of all content
-Allow: /blog/
-Allow: /projects/
-Allow: /contact/
-
-# Ensure link following
 Crawl-delay: 1
 
-# Sitemap location
 Sitemap: https://colecianflone.com/sitemap.xml
