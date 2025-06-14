@@ -24,10 +24,15 @@ async function convertImage(inputFile, slug) {
       const outputFile = path.join(outputDir, `${slug}-${size.suffix}.webp`);
       return sharp(inputFile)
         .resize(size.width)
-        .webp({ quality: 80 })
+        .webp({ 
+          quality: 50,
+          effort: 6,
+          reductionEffort: 6,
+          mixed: true
+        })
         .toFile(outputFile);
     }));
-
+    
     console.log(`✅ Converted ${slug} images`);
     return true;
   } catch (error) {
