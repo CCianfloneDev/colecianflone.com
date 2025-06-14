@@ -14,7 +14,7 @@ export default function BlogList({ posts }: BlogListProps) {
           key={post.slug}
           className="p-4 rounded-lg border border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-200 hover:shadow-md bg-white dark:bg-gray-800"
         >
-          <Link className="block" to={`/blog/${post.slug}`}>
+          <Link className="block min-h-[100px]" to={`/blog/${post.slug}`}>
             <h2 className="text-xl font-semibold text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mb-1">
               {post.title}
             </h2>

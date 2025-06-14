@@ -72,7 +72,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <NavBar />
-        {children}
+        <main className="min-h-screen">
+          <section className="max-w-2xl mx-auto px-6 py-8 min-h-[calc(100vh-4rem)]">
+            {children}
+          </section>
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>
