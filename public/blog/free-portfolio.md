@@ -2,6 +2,7 @@
 title: "Skip the Monthly Bills: How I Built My Portfolio Site for Absolutely Free"
 slug: "free-portfolio"
 description: "A step-by-step guide to building a professional portfolio site with React, TypeScript and Cloudflare Workers—completely free. Includes performance optimization tips and deployment strategies."
+readTime: "10-minute read"
 ---
 # How I Built My Portfolio Site for $0 (Because I'm Cheap)
 

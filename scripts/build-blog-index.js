@@ -68,6 +68,7 @@ async function buildIndex() {
       htmlFile: htmlFileName,
       date: formattedDate,
       description: data.description || "",
+      readTime: data.readTime || "",
     };
   }));
 

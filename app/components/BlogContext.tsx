@@ -22,7 +22,7 @@ export function BlogProvider({ children }: { children: React.ReactNode }) {
     fetch("/blog/blog-index.json")
       .then((res) => res.json())
       .then((data) => {
-        setPosts(data);
+        setPosts(data as BlogMeta[]);
         setLoading(false);
       })
       .catch((err) => {

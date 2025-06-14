@@ -5,4 +5,5 @@ export type BlogMeta = {
   htmlFile: string;
   date: string;
   description?: string;
+  readTime?: string;
 };
