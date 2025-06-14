@@ -20,23 +20,25 @@ export default function BlogList({ posts }: BlogListProps) {
             title={post.description || `Read ${post.title}`}
           >
             {post.image && post.image.sizes && (
-              <div className="aspect-w-16 aspect-h-9 mb-4 overflow-hidden rounded-lg">
+              <div className="aspect-w-16 aspect-h-9 mb-4 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
                 <picture>
                   <source
-                    srcSet={`${post.image.sizes.smallUrl} 400w, 
-                ${post.image.sizes.mediumUrl} 800w, 
-                ${post.image.sizes.largeUrl} 1200w`}
+                    srcSet={`${post.image.sizes.smallUrl} 400w,
+                            ${post.image.sizes.mediumUrl} 800w,
+                            ${post.image.sizes.largeUrl} 1200w`}
                     sizes="(max-width: 400px) 400px,
-               (max-width: 800px) 800px,
-               1200px"
+                           (max-width: 800px) 800px,
+                           min(1200px, 100vw)"
                     type="image/webp"
                   />
                   <img
                     src={post.image.sizes.mediumUrl}
                     alt={post.image.alt}
-                    className="object-cover w-full h-full transition-transform duration-200 
-                 hover:scale-105"
                     loading="lazy"
+                    decoding="async"
+                    className="object-cover w-full h-full transition-transform duration-200 
+                              hover:scale-105 opacity-0"
+                    onLoad={(e) => e.currentTarget.classList.remove('opacity-0')}
                   />
                 </picture>
               </div>
