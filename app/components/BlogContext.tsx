@@ -14,7 +14,11 @@ export function BlogProvider({ children }: BlogContextProps) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch("/blog/blog-index.json")
+    fetch("/blog/blog-index.json", {
+      headers: {
+        "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+      },
+    })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch blog posts");
         return res.json() as Promise<BlogMeta[]>;
