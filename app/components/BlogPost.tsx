@@ -13,12 +13,16 @@ export default function BlogPost({ post, content, onBack }: BlogPostProps) {
       <button
         className="mb-4 text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium flex items-center gap-2"
         onClick={onBack}
+        aria-label="Return to blog list"
+        title="Go back to all blog posts"
       >
         <svg
           className="w-4 h-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
+          role="img"
         >
           <path
             strokeLinecap="round"
