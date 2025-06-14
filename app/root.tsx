@@ -22,22 +22,24 @@ export const links: Route.LinksFunction = () => [
     as: "font",
     type: "font/woff2",
     crossOrigin: "anonymous",
-    fetchPriority: "high", 
+    fetchPriority: "high",
   },
   {
-    rel: "preconnect",
+    rel: "preload", 
     href: "/fonts/Inter-Medium.woff2",
-    as: "font",
+    as: "font", 
     type: "font/woff2",
     crossOrigin: "anonymous",
+    fetchPriority: "low", 
   },
   {
-    rel: "preconnect", 
+    rel: "preload", 
     href: "/fonts/Inter-Bold.woff2",
     as: "font",
     type: "font/woff2",
     crossOrigin: "anonymous",
-  },
+    fetchPriority: "low"
+  }
 ];
 
 export function Layout({ children }: LayoutProps) {
@@ -90,6 +92,18 @@ export function Layout({ children }: LayoutProps) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema)
           }}
+        />
+        <link 
+          rel="preload" 
+          href="/fonts/Inter-Regular.woff2" 
+          as="font" 
+          type="font/woff2" 
+          crossOrigin="anonymous"
+        />
+        <link 
+          rel="preconnect" 
+          href="https://www.linkedin.com"
+          crossOrigin="anonymous"
         />
       </head>
       <body>
