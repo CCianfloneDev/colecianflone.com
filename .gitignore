@@ -10,3 +10,7 @@
 .mf
 .wrangler
 .dev.vars*
+
+# source images that get converted to webp
+/.src-images/*
+!/.src-images/.gitkeep
