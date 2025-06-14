@@ -51,3 +51,16 @@ export type CollectionPageSchema = BaseSchema<{
   };
   hasPart?: BlogPostType[];
 }>;
+
+export type ContactPageSchema = BaseSchema<{
+  "@type": "ContactPage";
+  name: string;
+  description: string;
+  url: string;
+  mainEntity: {
+    "@type": "Person";
+    name: string;
+    email: string;
+    url: string;
+  };
+}>;
