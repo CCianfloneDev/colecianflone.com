@@ -1,11 +1,5 @@
 import React from "react";
-import type { BlogMeta } from "../types/blog";
-
-interface BlogPostProps {
-  post: BlogMeta & { html?: string };
-  content?: string;
-  onBack: () => void;
-}
+import type { BlogPostProps } from "../types/components";
 
 export default function BlogPost({ post, content, onBack }: BlogPostProps) {
   return (

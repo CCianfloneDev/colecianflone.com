@@ -1,4 +1,4 @@
-type MetaArgs = {
+export type MetaArgs = {
   title: string;
   description: string;
   url: string;

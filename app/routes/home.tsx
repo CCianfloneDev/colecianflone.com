@@ -1,6 +1,7 @@
 import type { Route } from "./+types/home";
+import type { PersonSchema } from "../types/schema";
 import AboutSection from "../components/AboutSection";
-import { getBaseMeta } from "../meta";
+import { getBaseMeta } from "../types/meta";
 
 export function meta({}: Route.MetaArgs) {
   return getBaseMeta({
@@ -11,8 +12,26 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const homeSchema: PersonSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Cole Cianflone",
+    url: "https://colecianflone.com",
+    jobTitle: "Software Developer",
+    sameAs: [
+      "https://www.linkedin.com/in/colecianflone/",
+      "https://github.com/CCianfloneDev",
+    ],
+  };
+
   return (
     <main className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homeSchema),
+        }}
+      />
       <div className="relative mb-8">
         <img
           src="/profile-320w.webp"

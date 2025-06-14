@@ -46,7 +46,6 @@ main > section {
   }
 }
 
-/* Optional: Add GPU acceleration for smoother animations */
 main > section {
   will-change: opacity, transform;
   backface-visibility: hidden;

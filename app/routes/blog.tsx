@@ -1,7 +1,8 @@
 import { Outlet, useLocation } from "react-router";
 import { BlogProvider, useBlogContext } from "../components/BlogContext";
 import BlogList from "../components/BlogList";
-import { getBaseMeta } from "../meta";
+import { getBaseMeta } from "../types/meta";
+import type { CollectionPageSchema, PersonSchema } from "../types/schema";
 
 export function meta() {
   return getBaseMeta({
@@ -12,8 +13,50 @@ export function meta() {
 }
 
 export default function Blog() {
+  const { posts } = useBlogContext();
+
+  const blogSchema: CollectionPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Blog | Cole Cianflone",
+    description: "Read articles and guides on my portfolio blog.",
+    url: "https://colecianflone.com/blog",
+    author: {
+      "@type": "Person",
+      name: "Cole Cianflone",
+      url: "https://colecianflone.com",
+    },
+    about: {
+      "@type": "CreativeWork",
+      name: "Software Development Articles",
+      description: "Articles about web development, software engineering, and technology",
+    },
+    hasPart: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.description || "",
+      datePublished: post.isoDate,
+      url: `https://colecianflone.com/blog/${post.slug}`,
+      author: {
+        "@type": "Person",
+        name: "Cole Cianflone",
+        url: "https://colecianflone.com",
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `https://colecianflone.com/blog/${post.slug}`,
+      },
+    })),
+  };
+
   return (
     <BlogProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogSchema),
+        }}
+      />
       <BlogContent />
     </BlogProvider>
   );
@@ -24,25 +67,43 @@ function BlogContent() {
   const location = useLocation();
   const isBlogIndex = location.pathname === "/blog";
 
-  if (loading) return;
-  if (error) return <div>Error loading blog posts.</div>;
+  if (loading) {
+    return (
+      <div className="animate-pulse space-y-6">
+        <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
+        <div className="space-y-4">
+          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
+          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-red-600 dark:text-red-400">
+        Error loading blog posts.
+      </div>
+    );
+  }
 
   return (
-    <main>
-      <section className="max-w-2xl mx-auto px-6 py-8">
-        <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-          Blog
-        </h1>
-        {isBlogIndex && (
+    <>
+      {isBlogIndex ? (
+        <>
+          <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+            Blog
+          </h1>
           <div className="space-y-6">
             <p className="text-lg text-gray-700 dark:text-gray-300">
               Thoughts, tutorials and insights about software development.
             </p>
             <BlogList posts={posts} />
           </div>
-        )}
+        </>
+      ) : (
         <Outlet />
-      </section>
-    </main>
+      )}
+    </>
   );
 }
