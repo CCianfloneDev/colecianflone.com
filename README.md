@@ -1,109 +1,66 @@
-# Welcome to React Router + Cloudflare Workers!
+# Cole Cianflone's Portfolio 👋
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/react-router-starter-template)
+Hey there! This is my personal portfolio site built with React and TypeScript. I built it to be blazing-fast and completely free to host (because who likes monthly bills?). It's got server-side rendering, a blog system, and hits perfect Lighthouse scores.
 
-![React Router Starter Template Preview](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/bfdc2f85-e5c9-4c92-128b-3a6711249800/public)
+## 🚀 Quick Start
 
-<!-- dash-content-start -->
-
-A modern, production-ready template for building full-stack React applications using [React Router](https://reactrouter.com/) and the [Cloudflare Vite plugin](https://developers.cloudflare.com/workers/vite-plugin/).
-
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-<!-- dash-content-end -->
-
-## Getting Started
-
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
+Pop open your terminal and run:
 
 ```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/react-router-starter-template
-```
-
-A live public deployment of this template is available at [https://react-router-starter-template.templates.workers.dev](https://react-router-starter-template.templates.workers.dev)
-
-### Installation
-
-Install the dependencies:
-
-```bash
+git clone https://github.com/CCianfloneDev/colecianflone.com.git
+cd colecianflone.com
 npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Head over to `http://localhost:5173` and you should see everything up and running!
 
-## Typegen
+## 🛠️ What's Inside
 
-Generate types for your Cloudflare bindings in `wrangler.json`:
+- React + TypeScript for the good stuff
+- React Router for smooth navigation
+- TailwindCSS because styling should be fun
+- Markdown for easy blogging
+- Server-side rendering for speed
 
-```sh
-npm run cf-typegen
-```
+## 🌐 Putting It Online
 
-## Building for Production
+You've got options! While this project is set up for Cloudflare Workers (because free is awesome), you can host it pretty much anywhere.
 
-Create a production build:
+### Option A: The Free Way (Cloudflare Workers)
 
-```bash
-npm run build
-```
+1. Grab a [Cloudflare account](https://dash.cloudflare.com/sign-up) (free tier is perfect)
+2. Set up Wrangler:
 
-## Previewing the Production Build
+   ```bash
+   npm install -g wrangler
+   npx wrangler login
+   ```
 
-Preview the production build locally:
+3. Ship it:
 
-```bash
-npm run preview
-```
+   ```bash
+   npm run build
+   npm run deploy
+   ```
 
-## Deployment
+### Option B: Your Way
 
-If you don't have a Cloudflare account, [create one here](https://dash.cloudflare.com/sign-up)! Go to your [Workers dashboard](https://dash.cloudflare.com/?to=%2F%3Aaccount%2Fworkers-and-pages) to see your [free custom Cloudflare Workers subdomain](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/) on `*.workers.dev`.
+Feel free to deploy to wherever you're comfortable with:
 
-Once that's done, you can build your app:
+- Netlify
+- Vercel
+- GitHub Pages
+- Or anywhere else that can host a React app!
 
-```sh
-npm run build
-```
+## 📖 Want the Full Story?
 
-And deploy it:
+Check out [how I built this site for absolutely free](https://colecianflone.com/blog/free-portfolio) on my blog.
 
-```sh
-npm run deploy
-```
+## 🤔 Questions?
 
-To deploy a preview URL:
-
-```sh
-npx wrangler versions upload
-```
-
-You can then promote a version to production after verification or roll it out progressively.
-
-```sh
-npx wrangler versions deploy
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+Running into issues or just want to chat about the setup? [Drop me a line](mailto:cole@colecianflone.com)!
 
 ---
 
-Built with ❤️ using React Router.
+Built with 💰 optimization in mind (because I'm cheap like that)
