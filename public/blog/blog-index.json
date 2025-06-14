@@ -1,10 +1,10 @@
 [
   {
-    "title": "Making and hosting this portfolio site for free!",
+    "title": "Skip the Monthly Bills: How I Built My Portfolio Site for Absolutely Free",
     "slug": "free-portfolio",
     "file": "free-portfolio.md",
     "htmlFile": "free-portfolio.html",
     "date": "13-Jun-2025",
-    "description": "A guide of how I built this portfolio and host it for completely free."
+    "description": "A step-by-step guide to building a professional portfolio site with React, TypeScript and Cloudflare Workers—completely free. Includes performance optimization tips and deployment strategies."
   }
 ]
