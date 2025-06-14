@@ -11,9 +11,8 @@ Disallow: /Dockerfile
 Disallow: /README.md
 Disallow: /package.json
 
-# Allow all blog and blog-content
+# Allow all blog
 Allow: /blog/
-Allow: /blog-content/
 
 # Sitemap (if you generate one)
 Sitemap: https://colecianflone.com/sitemap.xml

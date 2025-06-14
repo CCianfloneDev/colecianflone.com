@@ -10,8 +10,7 @@ import { minify } from "html-minifier-terser";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const BLOG_DIR = path.join(__dirname, "../public/blog");
-const BLOG_HTML_DIR = path.join(__dirname, "../public/blog-content"); // New output dir for HTML
+const BLOG_DIR = path.join(__dirname, "../public/blog"); // markdown files are here and html files will be generated here
 const OUTPUT_FILE = path.join(BLOG_DIR, "blog-index.json");
 
 function formatDate(date) {
@@ -22,9 +21,9 @@ function formatDate(date) {
 }
 
 async function buildIndex() {
-  // Ensure the HTML output directory exists
-  if (!fs.existsSync(BLOG_HTML_DIR)) {
-    fs.mkdirSync(BLOG_HTML_DIR, { recursive: true });
+  // Ensure the blog directory exists
+  if (!fs.existsSync(BLOG_DIR)) {
+    fs.mkdirSync(BLOG_DIR, { recursive: true });
   }
 
   const files = await fg("*.md", { cwd: BLOG_DIR });
@@ -57,9 +56,9 @@ async function buildIndex() {
       minifyJS: true,
     });
 
-    // Write HTML file for this post to blog-content directory
+    // Write HTML file for this post to blog directory
     const htmlFileName = file.replace(/\.md$/, ".html");
-    fs.writeFileSync(path.join(BLOG_HTML_DIR, htmlFileName), html);
+    fs.writeFileSync(path.join(BLOG_DIR, htmlFileName), html);
 
     return {
       title: data.title || file.replace(/\.md$/, ""),
@@ -75,7 +74,7 @@ async function buildIndex() {
   posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(posts, null, 2));
-  console.log(`Wrote ${posts.length} posts to ${OUTPUT_FILE} and individual HTML files in blog-content.`);
+  console.log(`Wrote ${posts.length} posts and HTML files to ${OUTPUT_FILE}.`);
 }
 
 buildIndex();

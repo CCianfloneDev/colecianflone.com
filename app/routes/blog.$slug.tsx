@@ -25,7 +25,7 @@ export default function BlogSlug() {
 
   useEffect(() => {
     if (post) {
-      fetch(`/blog-content/${post.htmlFile}`)
+      fetch(`/blog/${post.htmlFile}`)
         .then((res) => res.text())
         .then(setContent);
     } else {
