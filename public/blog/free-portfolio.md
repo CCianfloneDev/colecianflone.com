@@ -31,6 +31,8 @@ Let's be real—I'm cheap. When I needed a portfolio site to showcase my work, m
 Sure, I could have paid for premium hosting, but why would I when free alternatives work just as well? My goals were straightforward:
 - Fast loading times (nobody waits for slow sites)
 - Professional appearance (first impressions matter)
+- Mobile responsive design (most traffic is mobile these days)
+- Accessible to all users (good design is inclusive design)
 - SEO-friendly (discoverability is key)
 - **Zero ongoing costs** (why pay when you don't have to?)
 
@@ -72,7 +74,8 @@ After building this, I realized I'd accidentally created something pretty useful
 
 **For Users:**
 - Fast loading times
-- Works seamlessly on any device
+- Works seamlessly on any device with responsive design
+- Accessible to users with disabilities
 - Proper SEO optimization
 - Clean, professional appearance
 
@@ -90,8 +93,9 @@ Ready to build your own? Here's everything you need to know, step by step.
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Node.js](https://nodejs.org/ "Download Node.js - JavaScript runtime for building applications") (v14 or higher)
+- [Visual Studio Code](https://code.visualstudio.com/ "Download Visual Studio Code - Free source code editor")
+- [npm package manager](https://www.npmjs.com/ "npm - Node.js package manager") or [yarn package manager](https://yarnpkg.com/ "Yarn - Fast, reliable package manager")
 - A GitHub account (for deployment)
 - A Cloudflare account (free tier works perfectly)
 
@@ -109,7 +113,7 @@ npm install
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see your site. Hot reload is enabled, so changes show up instantly—no manual refreshing needed.
+Visit [http://localhost:3000](http://localhost:3000 "View your portfolio site locally in development mode") to see your site. Hot reload is enabled, so changes show up instantly—no manual refreshing needed.
 
 ## Project Structure
 
@@ -158,21 +162,21 @@ No database, no CMS, no maintenance headaches—just write and build.
 Here's what powers this portfolio and why each piece matters:
 
 **Core Framework:**
-- **[Vite](https://vitejs.dev/)** - Lightning-fast build tool and dev server
-- **[React](https://react.dev/)** - Component-based UI for interactive interfaces
-- **[TypeScript](https://www.typescriptlang.org/)** - Better code completion and catches errors at compile time
-- **[React Router](https://reactrouter.com/)** - File-based routing and navigation
+- **[Vite build tool and development server](https://vitejs.dev/ "Vite - Next generation frontend tooling")** - Lightning-fast build tool and dev server
+- **[React JavaScript library](https://react.dev/ "React - The library for web and native user interfaces")** - Component-based UI for interactive interfaces
+- **[TypeScript programming language](https://www.typescriptlang.org/ "TypeScript - JavaScript with syntax for types")** - Better code completion and catches errors at compile time
+- **[React Router for navigation](https://reactrouter.com/ "React Router - Declarative routing for React")** - File-based routing and navigation
 
 **Styling & Content:**
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography)** - Beautiful prose styling for blog content
-- **[marked](https://marked.js.org/)** - Fast Markdown parser for build scripts
-- **[gray-matter](https://github.com/jonschlinkert/gray-matter)** - Parses frontmatter from Markdown files
+- **[Tailwind CSS framework](https://tailwindcss.com/ "Tailwind CSS - Utility-first CSS framework")** - Utility-first CSS framework
+- **[Tailwind Typography plugin](https://github.com/tailwindlabs/tailwindcss-typography "Tailwind CSS Typography - Beautiful typographic defaults")** - Beautiful prose styling for blog content
+- **[marked Markdown parser](https://marked.js.org/ "marked - A markdown parser built for speed")** - Fast Markdown parser for build scripts
+- **[gray-matter frontmatter parser](https://github.com/jonschlinkert/gray-matter "gray-matter - Parse front-matter from strings or files")**  - Parses frontmatter from Markdown files
 
 **Build & Optimization:**
-- **[github-slugger](https://github.com/Flet/github-slugger)** - Generates heading anchor links
-- **[html-minifier-terser](https://github.com/terser/html-minifier-terser)** - Minifies HTML for performance
-- **[fast-glob](https://github.com/mrmlnc/fast-glob)** - Efficient file finding for blog posts
+- **[github-slugger for URL slugs](https://github.com/Flet/github-slugger "github-slugger - Generate URL slugs like GitHub")** - Generates heading anchor links
+- **[html-minifier-terser for optimization](https://github.com/terser/html-minifier-terser "html-minifier-terser - Minify HTML files")** - Minifies HTML for performance
+- **[fast-glob for file searching](https://github.com/mrmlnc/fast-glob "fast-glob - Fast and efficient glob library")** - Efficient file finding for blog posts
 
 The beauty of this setup? Everything has generous free tiers, and you'll realistically never hit the limits for a personal portfolio.
 
@@ -211,7 +215,7 @@ Cloudflare Workers is genuinely free for personal projects and offers:
 Your site will be live at `https://your-worker.your-account.workers.dev`
 
 5. **Add a custom domain** (optional)
-   - Go to your Cloudflare dashboard
+   - Go to your [Cloudflare dashboard](https://dash.cloudflare.com/ "Cloudflare Dashboard - Manage your Cloudflare account")
    - Navigate to Workers & Pages > your Worker > Triggers
    - Add your custom domain
 
