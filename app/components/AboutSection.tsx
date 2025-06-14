@@ -1,7 +1,7 @@
 export default function AboutSection() {
   return (
-    <section className="max-w-2xl mx-auto px-6 py-8">
-      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+    <div className="max-w-2xl mx-auto px-6 py-8">
+      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight" style={{ fontSize: '2.25rem' }}>
         About Me
       </h1>
       <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300">
@@ -38,6 +38,6 @@ export default function AboutSection() {
           !
         </p>
       </div>
-    </section>
+    </div>
   );
 }
