@@ -7,9 +7,11 @@ export type RouteParams = {
   home: Record<string, never>;
 };
 
-export type RouteMetaArgs<T extends keyof RouteParams = keyof RouteParams> = {
-  params: RouteParams[T];
-};
+export interface RouteMetaArgs {
+  params: {
+    slug: string;
+  };
+}
 
 export type RouteErrorBoundaryProps = {
   error: Error;
