@@ -5,7 +5,7 @@ description: >-
   A practical guide to building a portfolio site with React, TypeScript and
   Cloudflare Workers—completely free. Includes performance optimization tips and
   deployment strategies.
-readTime: 10-minute read
+readTime: 12-minute read
 image:
   alt: >-
     A diagram showing the architecture of a free portfolio site using Cloudflare
@@ -159,13 +159,19 @@ Visit [http://localhost:3000](http://localhost:3000 "View your portfolio site lo
   /components/   # Reusable UI components
   /routes/       # Page components and routing
   /types/        # TypeScript type definitions
-/.src-images/    # Source images for blog posts (original files)
+/.react-router/  # React Router configuration (git ignored)
+/.src-images/    # Source images for blog posts (original files) (files git ignored)
+.wrangler/       # Cloudflare Workers configuration (git ignored)
+/workers/        # Edge function logic
 public/         
   /blog/         # Your markdown blog posts
   /blog-content/ # Generated HTML versions of blog posts
   /blog-images/  # Converted WebP images in multiple sizes
   /fonts/        # Self-hosted Inter font files (woff2)
-scripts/        # Build and optimization scripts
+build/           # Production build output (git ignored)
+  /client/       # Client-side bundles
+  /server/       # Server-side rendering
+scripts/         # Build and optimization scripts
 ```
 
 The structure is intentionally straightforward—no unnecessarily complex folder hierarchies to navigate.
