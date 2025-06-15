@@ -58,10 +58,12 @@ export default function BlogSlug() {
   const navigate = useNavigate();
   const { posts, loading } = useBlogContext();
   const [content, setContent] = useState<string>("");
+  const [contentLoading, setContentLoading] = useState(true);
   const post = posts.find((p) => p.slug === slug);
 
   useEffect(() => {
     if (post) {
+      setContentLoading(true);
       const controller = new AbortController();
       
       fetch(`/blog-content/${post.htmlFile}`, {
@@ -74,16 +76,21 @@ export default function BlogSlug() {
           if (!res.ok) throw new Error('Failed to load post content');
           return res.text();
         })
-        .then(setContent)
+        .then(content => {
+          setContent(content);
+          setContentLoading(false);
+        })
         .catch(err => {
           if (err.name !== 'AbortError') {
             console.error('Failed to load post:', err);
           }
+          setContentLoading(false);
         });
 
       return () => controller.abort();
     } else {
       setContent("");
+      setContentLoading(false);
       return undefined;
     }
   }, [post?.htmlFile]);
@@ -153,7 +160,25 @@ export default function BlogSlug() {
           __html: JSON.stringify(schema)
         }}
       />
-      <BlogPost post={post} content={content} onBack={() => navigate("/blog")} />
+      {/* Show skeleton while content is loading to prevent layout shift */}
+      {contentLoading ? (
+        <div className="animate-pulse space-y-6">
+          <div className="flex items-center mb-6">
+            <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-32"></div>
+          </div>
+          <div className="space-y-4">
+            <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/4"></div>
+          </div>
+          <div className="space-y-3">
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-4/5"></div>
+          </div>
+        </div>
+      ) : (
+        <BlogPost post={post} content={content} onBack={() => navigate("/blog")} />
+      )}
     </article>
   );
 }

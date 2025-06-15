@@ -16,6 +16,34 @@ export function meta() {
   });
 }
 
+function BlogLoadingSkeleton() {
+  return (
+    <div className="animate-pulse space-y-6">
+      <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-1/4"></div>
+      <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
+      <div className="space-y-6">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 
+                       bg-white dark:bg-gray-800"
+          >
+            <div className="space-y-3">
+              <div className="aspect-w-16 aspect-h-9 mb-4 overflow-hidden rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+              <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/4"></div>
+              <div className="space-y-2">
+                <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
+                <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function BlogContent() {
   const { posts, loading, error } = useBlogContext();
   const location = useLocation();
@@ -57,21 +85,25 @@ function BlogContent() {
   };
 
   if (loading) {
-    return (
-      <div className="animate-pulse space-y-6">
-        <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
-        <div className="space-y-4">
-          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
-          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
-        </div>
-      </div>
-    );
+    return <BlogLoadingSkeleton />;
   }
 
   if (error) {
     return (
-      <div className="text-red-600 dark:text-red-400">
-        Error loading blog posts.
+      <div className="text-center py-12">
+        <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+          Error Loading Blog
+        </h1>
+        <p className="text-lg text-red-600 dark:text-red-400 mb-6">
+          Unable to load blog posts. Please try again later.
+        </p>
+        <button
+          onClick={() => window.location.reload()}
+          className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
+                   dark:hover:text-blue-300 font-medium transition-colors"
+        >
+          Refresh Page
+        </button>
       </div>
     );
   }
