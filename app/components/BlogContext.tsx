@@ -1,15 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import type { BlogMeta } from "../types/blog";
+import { createContext, useContext, useEffect, useState } from "react";
 import type { BlogContextType, BlogContextProps } from "../types/components";
-
-// Import the blog data directly
+import type { BlogMeta } from "../types/blog";
 import blogIndexData from "../blog/blog-index.json";
 
-const BlogContext = createContext<BlogContextType>({
-  posts: [],
-  loading: true,
-  error: null,
-});
+const BlogContext = createContext<BlogContextType | undefined>(undefined);
 
 export function BlogProvider({ children }: BlogContextProps) {
   const [posts, setPosts] = useState<BlogMeta[]>([]);
@@ -35,5 +29,9 @@ export function BlogProvider({ children }: BlogContextProps) {
 }
 
 export function useBlogContext() {
-  return useContext(BlogContext);
+  const context = useContext(BlogContext);
+  if (context === undefined) {
+    throw new Error('useBlogContext must be used within a BlogProvider');
+  }
+  return context;
 }
