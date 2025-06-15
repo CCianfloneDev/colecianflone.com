@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import type { RouteMetaArgs } from "../types/routes";
 import { getBaseMeta, type MetaArgs } from "../types/meta";
 import { useBlogContext } from "../components/BlogContext";
@@ -19,7 +19,6 @@ export function meta({ params }: RouteMetaArgs) {
 export default function BlogSlug() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
   const { posts, loading } = useBlogContext();
   const [content, setContent] = useState<string>("");
   const post = posts.find((p) => p.slug === slug);
@@ -148,7 +147,7 @@ export default function BlogSlug() {
   };
 
   return (
-    <>
+    <article className="space-y-6">
       {/* BlogPosting JSON-LD for SEO */}
       <script
         type="application/ld+json"
@@ -157,6 +156,6 @@ export default function BlogSlug() {
         }}
       />
       <BlogPost post={post} content={content} onBack={() => navigate("/blog")} />
-    </>
+    </article>
   );
 }

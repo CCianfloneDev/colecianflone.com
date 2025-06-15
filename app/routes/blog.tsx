@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router";
 import { BlogProvider, useBlogContext } from "../components/BlogContext";
 import BlogList from "../components/BlogList";
 import { getBaseMeta } from "../types/meta";
-import type { CollectionPageSchema, PersonSchema } from "../types/schema";
+import type { CollectionPageSchema } from "../types/schema";
 
 export function meta() {
   return getBaseMeta({
@@ -16,8 +16,10 @@ export function meta() {
   });
 }
 
-export default function Blog() {
-  const { posts } = useBlogContext();
+function BlogContent() {
+  const { posts, loading, error } = useBlogContext();
+  const location = useLocation();
+  const isBlogIndex = location.pathname === "/blog";
 
   const blogSchema: CollectionPageSchema = {
     "@context": "https://schema.org",
@@ -54,24 +56,6 @@ export default function Blog() {
     })),
   };
 
-  return (
-    <BlogProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogSchema),
-        }}
-      />
-      <BlogContent />
-    </BlogProvider>
-  );
-}
-
-function BlogContent() {
-  const { posts, loading, error } = useBlogContext();
-  const location = useLocation();
-  const isBlogIndex = location.pathname === "/blog";
-
   if (loading) {
     return (
       <div className="animate-pulse space-y-6">
@@ -94,6 +78,14 @@ function BlogContent() {
 
   return (
     <>
+      {isBlogIndex && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(blogSchema),
+          }}
+        />
+      )}
       {isBlogIndex ? (
         <>
           <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
@@ -110,5 +102,13 @@ function BlogContent() {
         <Outlet />
       )}
     </>
+  );
+}
+
+export default function Blog() {
+  return (
+    <BlogProvider>
+      <BlogContent />
+    </BlogProvider>
   );
 }

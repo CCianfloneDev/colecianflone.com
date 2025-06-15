@@ -11,7 +11,6 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import "./fonts.css";
 import NavBar from "./components/NavBar";
-import type { LayoutProps } from "./types/components";
 import type { PersonSchema, WebSiteSchema } from "./types/schema";
 
 
@@ -42,7 +41,7 @@ export const links: Route.LinksFunction = () => [
   }
 ];
 
-export function Layout({ children }: LayoutProps) {
+export default function App() {
   const personSchema: PersonSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -74,7 +73,7 @@ export function Layout({ children }: LayoutProps) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-        <link rel="manifest" href="/site.webmanifest"></link>
+        <link rel="manifest" href="/site.webmanifest"/>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -84,9 +83,9 @@ export function Layout({ children }: LayoutProps) {
         <meta name="google" content="notranslate" />
         <link rel="alternate" href="https://colecianflone.com" hrefLang="en-CA" />
         <link rel="alternate" href="https://colecianflone.com" hrefLang="x-default" />
-
         <Meta />
         <Links />
+
         {/* JSON-LD structured data for SEO */}
         <script
           type="application/ld+json"
@@ -100,6 +99,7 @@ export function Layout({ children }: LayoutProps) {
             __html: JSON.stringify(websiteSchema)
           }}
         />
+
         <link 
           rel="preload" 
           href="/fonts/Inter-Regular.woff2" 
@@ -112,47 +112,6 @@ export function Layout({ children }: LayoutProps) {
           href="https://www.linkedin.com"
           crossOrigin="anonymous"
         />
-        {/* RSS Feed */}
-        <link 
-          rel="alternate" 
-          type="application/rss+xml" 
-          title="Cole Cianflone's Blog RSS Feed" 
-          href="/rss.xml" 
-        />
-      </head>
-      <body>
-        <NavBar />
-        <main className="min-h-screen">
-          <section className="max-w-2xl mx-auto px-6 py-8 min-h-[calc(100vh-4rem)]">
-            {children}
-          </section>
-        </main>
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-export default function App() {
-  return (
-    <html lang="en">
-      <head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-        <link rel="manifest" href="/site.webmanifest"></link>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="google" content="nositelinkssearchbox" />
-        <meta name="google" content="notranslate" />
-        <link rel="alternate" href="https://colecianflone.com" hrefLang="en-CA" />
-        <link rel="alternate" href="https://colecianflone.com" hrefLang="x-default" />
-
-        {/* RSS Feed */}
         <link 
           rel="alternate" 
           type="application/rss+xml" 
