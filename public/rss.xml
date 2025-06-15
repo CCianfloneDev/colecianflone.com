@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cole Cianflone's Blog</title>
+    <link>https://colecianflone.com/blog</link>
+    <description>Articles about web development, technology, and software engineering</description>
+    <language>en-us</language>
+    <atom:link href="https://colecianflone.com/rss.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Skip the Monthly Bills: How I Built My Portfolio Site for Absolutely Free</title>
+      <link>https://colecianflone.com/blog/free-portfolio</link>
+      <guid>https://colecianflone.com/blog/free-portfolio</guid>
+      <pubDate>Sun, 15 Jun 2025 01:44:08 GMT</pubDate>
+      <description><![CDATA[A practical guide to building a portfolio site with React, TypeScript and Cloudflare Workers—completely free. Includes performance optimization tips and deployment strategies.]]></description>
+      <image>
+        <url>https://colecianflone.com/blog-images/free-portfolio-large.webp</url>
+        <title>A diagram showing the architecture of a free portfolio site using Cloudflare Workers</title>
+      </image>
+    </item>
+  </channel>
+</rss>

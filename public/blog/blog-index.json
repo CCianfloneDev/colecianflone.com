@@ -5,9 +5,9 @@
     "file": "free-portfolio.md",
     "htmlFile": "free-portfolio.html",
     "date": "14-Jun-2025",
-    "isoDate": "2025-06-14T23:06:11.991Z",
+    "isoDate": "2025-06-15T01:44:08.398Z",
     "description": "A practical guide to building a portfolio site with React, TypeScript and Cloudflare Workers—completely free. Includes performance optimization tips and deployment strategies.",
-    "readTime": "10-minute read",
+    "readTime": "12-minute read",
     "image": {
       "alt": "A diagram showing the architecture of a free portfolio site using Cloudflare Workers",
       "sizes": {

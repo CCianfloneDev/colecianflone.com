@@ -6,13 +6,19 @@ npm install
   /components/   # Reusable UI components
   /routes/       # Page components and routing
   /types/        # TypeScript type definitions
-/.src-images/    # Source images for blog posts (original files)
+/.react-router/  # React Router configuration (git ignored)
+/.src-images/    # Source images for blog posts (original files) (files git ignored)
+.wrangler/       # Cloudflare Workers configuration (git ignored)
+/workers/        # Edge function logic
 public/         
   /blog/         # Your markdown blog posts
   /blog-content/ # Generated HTML versions of blog posts
   /blog-images/  # Converted WebP images in multiple sizes
   /fonts/        # Self-hosted Inter font files (woff2)
-scripts/        # Build and optimization scripts
+build/           # Production build output (git ignored)
+  /client/       # Client-side bundles
+  /server/       # Server-side rendering
+scripts/         # Build and optimization scripts
 </code></pre><p>The structure is intentionally straightforward—no unnecessarily complex folder hierarchies to navigate.</p><h3 id="writing-blog-posts">Writing Blog Posts</h3><p>All blog posts live in <code>/public/blog/</code> as Markdown files. The workflow is beautifully simple:</p><ol><li><p><strong>Create a new <code>.md</code> file</strong></p><pre><code class="language-markdown">---
 title: My Awesome Post
 slug: my-awesome-post
