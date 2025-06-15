@@ -7,8 +7,12 @@ import type { CollectionPageSchema, PersonSchema } from "../types/schema";
 export function meta() {
   return getBaseMeta({
     title: "Blog | Cole Cianflone",
-    description: "Read articles and guides on my portfolio blog.",
+    description:
+      "Technical articles and insights by Cole Cianflone.",
     url: "https://colecianflone.com/blog",
+    keywords:
+      "Software Development Blog, Web Development Articles, React Tutorials, TypeScript Guide, Winnipeg Tech Scene, Software Engineering Blog, Cole Cianflone Blog",
+    type: "blog",
   });
 }
 
@@ -29,7 +33,8 @@ export default function Blog() {
     about: {
       "@type": "CreativeWork",
       name: "Software Development Articles",
-      description: "Articles about web development, software engineering, and technology",
+      description:
+        "Articles about web development, software engineering, and technology",
     },
     hasPart: posts.map((post) => ({
       "@type": "BlogPosting",

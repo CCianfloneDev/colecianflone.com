@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, useLocation } from "react-router";
 import type { RouteMetaArgs } from "../types/routes";
 import { getBaseMeta, type MetaArgs } from "../types/meta";
 import { useBlogContext } from "../components/BlogContext";
@@ -7,22 +7,60 @@ import BlogPost from "~/components/BlogPost";
 import type { BlogPostSchema } from '../types/schema';
 
 export function meta({ params }: RouteMetaArgs) {
-  const slug = params.slug;
+  // Default metadata before we have the post data
   return getBaseMeta({
     title: "Blog Post | Cole Cianflone",
-    description: "Read this blog post on my portfolio.",
-    url: `https://colecianflone.com/blog/${slug}`,
+    description: "Loading blog post...",
+    url: `https://colecianflone.com/blog/${params.slug}`,
     type: "article",
-  } satisfies MetaArgs);
+  });
 }
 
 export default function BlogSlug() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { posts, loading } = useBlogContext();
   const [content, setContent] = useState<string>("");
-
   const post = posts.find((p) => p.slug === slug);
+
+  // Update metadata when post data is available
+  useEffect(() => {
+    if (post) {
+      const metaArgs: MetaArgs = {
+        title: `${post.title} | Cole Cianflone`,
+        description: post.description || "Read this blog post on my portfolio.",
+        url: `https://colecianflone.com/blog/${post.slug}`,
+        type: "article",
+        keywords: "Software Development, Web Development, Technical Tutorial, React, TypeScript, Cloudflare Workers, Cole Cianflone Blog",
+      };
+
+      // Only add image if it exists
+      if (post.image?.sizes.largeUrl) {
+        metaArgs.image = post.image.sizes.largeUrl;
+      }
+
+      const metaTags = getBaseMeta(metaArgs);
+
+      // Update each meta tag
+      metaTags.forEach(tag => {
+        if ('title' in tag) {
+          document.title = tag.title;
+        } else {
+          const attributeKey = Object.keys(tag)[0];
+          const attributeValue = tag[attributeKey as keyof typeof tag];
+          const selector = attributeKey === 'name' || attributeKey === 'property' 
+            ? `meta[${attributeKey}="${attributeValue}"]`
+            : `meta[${attributeKey}]`;
+          
+          const element = document.querySelector(selector);
+          if (element) {
+            element.setAttribute('content', tag.content || '');
+          }
+        }
+      });
+    }
+  }, [post]);
 
   useEffect(() => {
     if (post) {
