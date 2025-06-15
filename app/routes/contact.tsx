@@ -4,8 +4,12 @@ import type { ContactPageSchema } from "../types/schema";
 export function meta() {
   return getBaseMeta({
     title: "Contact | Cole Cianflone",
-    description: "Get in touch with Cole Cianflone.",
+    description:
+      "Get in touch with Cole Cianflone, a software developer in Winnipeg, Manitoba. Available for development projects and technical consulting.",
     url: "https://colecianflone.com/contact",
+    keywords:
+      "Contact Cole Cianflone, Hire Software Developer Winnipeg, Manitoba Developer Contact, Software Engineering Consultation, Web Development Services",
+    type: "website",
   });
 }
 

@@ -5,9 +5,12 @@ import { getBaseMeta } from "../types/meta";
 
 export function meta({}: Route.MetaArgs) {
   return getBaseMeta({
-    title: "Cole Cianflone",
-    description: "Welcome to my portfolio!",
-    url: "https://colecianflone.com/",
+    title: "Cole Cianflone | Software Developer in Winnipeg",
+    description:
+      "Winnipeg-based software developer specializing in full-stack development. Building modern applications with React, TypeScript, and .NET.",
+    url: "https://colecianflone.com",
+    keywords:
+      "Cole Cianflone, Winnipeg Software Developer, Full Stack Developer Manitoba, React Developer, TypeScript Developer, .NET Developer Winnipeg, Software Engineer Canada",
   });
 }
 

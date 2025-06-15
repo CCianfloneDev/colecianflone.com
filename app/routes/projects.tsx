@@ -4,8 +4,12 @@ import type { CollectionPageSchema } from "../types/schema";
 export function meta() {
   return getBaseMeta({
     title: "Projects | Cole Cianflone",
-    description: "Explore my software development projects and case studies.",
+    description:
+      "Portfolio of software development projects by Cole Cianflone. Featuring web applications, open source contributions, and technical case studies.",
     url: "https://colecianflone.com/projects",
+    keywords:
+      "Software Projects, Web Development Portfolio, React Projects, TypeScript Applications, Winnipeg Developer Portfolio, Full Stack Projects, Open Source Work",
+    type: "website",
   });
 }
 
