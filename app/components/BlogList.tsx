@@ -2,7 +2,36 @@ import React from "react";
 import { Link } from "react-router";
 import type { BlogListProps } from "../types/components";
 
+function BlogListSkeleton() {
+  return (
+    <ul className="space-y-6">
+      {[1, 2, 3].map((i) => (
+        <li
+          key={i}
+          className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 
+                     bg-white dark:bg-gray-800 animate-pulse"
+        >
+          <div className="space-y-3">
+            <div className="aspect-w-16 aspect-h-9 mb-4 overflow-hidden rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+            <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/4"></div>
+            <div className="space-y-2">
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
+            </div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-32"></div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function BlogList({ posts }: BlogListProps) {
+  if (!posts || posts.length === 0) {
+    return <BlogListSkeleton />;
+  }
+
   return (
     <ul className="space-y-6">
       {posts.map((post) => (
