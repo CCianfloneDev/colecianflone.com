@@ -5,6 +5,7 @@ import { getBaseMeta } from "../types/meta";
 import { useBlogContext } from "../components/BlogContext";
 import BlogPost from "../components/BlogPost";
 import type { BlogPostSchema } from '../types/schema';
+import { BlogPostSkeleton } from "../components/Skeleton";
 
 // Import the blog data directly for meta function
 import blogIndexData from "../blog/blog-index.json";
@@ -96,15 +97,7 @@ export default function BlogSlug() {
   }, [post?.htmlFile]);
 
   if (loading) {
-    return (
-      <div className="animate-pulse space-y-6">
-        <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
-        <div className="space-y-4">
-          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
-          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
-        </div>
-      </div>
-    );
+    return <BlogPostSkeleton />;
   }
 
   if (!post) {
@@ -119,7 +112,7 @@ export default function BlogSlug() {
         <button
           onClick={() => navigate("/blog")}
           className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
-                   dark:hover:text-blue-300 font-medium transition-colors"
+                   dark:hover:text-blue-300 font-medium transition-colors cursor-pointer"
         >
           Back to Blog List
         </button>
@@ -160,22 +153,8 @@ export default function BlogSlug() {
           __html: JSON.stringify(schema)
         }}
       />
-      {/* Show skeleton while content is loading to prevent layout shift */}
       {contentLoading ? (
-        <div className="animate-pulse space-y-6">
-          <div className="flex items-center mb-6">
-            <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-32"></div>
-          </div>
-          <div className="space-y-4">
-            <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/4"></div>
-          </div>
-          <div className="space-y-3">
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-4/5"></div>
-          </div>
-        </div>
+        <BlogPostSkeleton />
       ) : (
         <BlogPost post={post} content={content} onBack={() => navigate("/blog")} />
       )}

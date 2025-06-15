@@ -3,6 +3,7 @@ import { BlogProvider, useBlogContext } from "../components/BlogContext";
 import BlogList from "../components/BlogList";
 import { getBaseMeta } from "../types/meta";
 import type { CollectionPageSchema } from "../types/schema";
+import { PageHeaderSkeleton, BlogListSkeleton } from "../components/Skeleton";
 
 export function meta() {
   return getBaseMeta({
@@ -14,34 +15,6 @@ export function meta() {
       "Software Development Blog, Web Development Articles, React Tutorials, TypeScript Guide, Winnipeg Tech Scene, Software Engineering Blog, Cole Cianflone Blog",
     type: "blog",
   });
-}
-
-function BlogLoadingSkeleton() {
-  return (
-    <div className="animate-pulse space-y-6">
-      <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-1/4"></div>
-      <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
-      <div className="space-y-6">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 
-                       bg-white dark:bg-gray-800"
-          >
-            <div className="space-y-3">
-              <div className="aspect-w-16 aspect-h-9 mb-4 overflow-hidden rounded-lg bg-gray-300 dark:bg-gray-700"></div>
-              <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
-              <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/4"></div>
-              <div className="space-y-2">
-                <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded"></div>
-                <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 function BlogContent() {
@@ -85,7 +58,12 @@ function BlogContent() {
   };
 
   if (loading) {
-    return <BlogLoadingSkeleton />;
+    return (
+      <div className="space-y-6">
+        <PageHeaderSkeleton />
+        <BlogListSkeleton />
+      </div>
+    );
   }
 
   if (error) {
