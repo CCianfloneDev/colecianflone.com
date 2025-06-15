@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import type { RouteMetaArgs } from "../types/routes";
-import { getBaseMeta, type MetaArgs } from "../types/meta";
+import { getBaseMeta } from "../types/meta";
 import { useBlogContext } from "../components/BlogContext";
 import BlogPost from "~/components/BlogPost";
 import type { BlogPostSchema } from '../types/schema';
 
 export function meta({ params }: RouteMetaArgs) {
-  // Default metadata before we have the post data
+  const { posts } = useBlogContext();
+  const post = posts.find(p => p.slug === params.slug);
+
+  // Return metadata based on the post data
   return getBaseMeta({
-    title: "Blog Post | Cole Cianflone",
-    description: "Loading blog post...",
+    title: post ? `${post.title} | Cole Cianflone` : "Blog Post | Cole Cianflone",
+    description: post?.description || "Read this blog post on my portfolio.",
     url: `https://colecianflone.com/blog/${params.slug}`,
     type: "article",
+    keywords: "Software Development, Web Development, Technical Tutorial, React, TypeScript, Cloudflare Workers, Cole Cianflone Blog",
+    ...(post?.image?.sizes.largeUrl && { image: post.image.sizes.largeUrl })
   });
 }
 
@@ -26,17 +31,29 @@ export default function BlogSlug() {
   // Update metadata when post data is available
   useEffect(() => {
     if (post) {
-      const metaArgs: MetaArgs = {
+      const genericKeywords = [
+        "Software Development",
+        "Web Development",
+        "Technical Tutorial",
+        "Cole Cianflone Blog",
+        "Blog",
+        "Article"
+      ];
+      const metaArgs = {
         title: `${post.title} | Cole Cianflone`,
         description: post.description || "Read this blog post on my portfolio.",
         url: `https://colecianflone.com/blog/${post.slug}`,
         type: "article",
-        keywords: "Software Development, Web Development, Technical Tutorial, React, TypeScript, Cloudflare Workers, Cole Cianflone Blog",
+        keywords: [
+          post.title,
+          post.description,
+          ...genericKeywords
+        ].filter(Boolean).join(", "),
       };
 
       // Only add image if it exists
       if (post.image?.sizes.largeUrl) {
-        metaArgs.image = post.image.sizes.largeUrl;
+        metaArgs.url = post.image.sizes.largeUrl;
       }
 
       const metaTags = getBaseMeta(metaArgs);
