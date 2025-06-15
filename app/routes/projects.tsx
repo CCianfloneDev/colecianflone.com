@@ -34,14 +34,14 @@ export default function Projects() {
   };
 
   return (
-    <main>
+    <section>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(projectsSchema),
         }}
       />
-      <section className="max-w-2xl mx-auto px-6 py-8">
+      <div className="max-w-2xl mx-auto px-6 py-8">
         <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
           Projects
         </h1>
@@ -78,7 +78,7 @@ export default function Projects() {
             </p>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

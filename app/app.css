@@ -43,9 +43,9 @@ body {
   }
 }
 
-/* Apply animation to section elements for consistency */
-main > section,
-main > article {
+/* Apply animation to section and article elements within main */
+main section,
+main article {
   animation: fadeIn 0.3s ease-out;
   animation-fill-mode: both;
   will-change: opacity, transform;
@@ -55,8 +55,8 @@ main > article {
 
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
-  main > section,
-  main > article {
+  main section,
+  main article {
     animation: fadeInMobile 0.2s ease-out; /* Simpler animation on mobile */
     will-change: opacity; /* Only animate opacity on mobile */
   }
@@ -64,8 +64,8 @@ main > article {
 
 /* Respect user's reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  main > section,
-  main > article {
+  main section,
+  main article {
     animation: none;
   }
 }

@@ -29,17 +29,18 @@ export default function Contact() {
   };
 
   return (
-    <main>
+    <section>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(contactSchema),
         }}
       />
-      <section className="max-w-2xl mx-auto px-6 py-8">
+      <div className="max-w-2xl mx-auto px-6 py-8">
         <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
           Contact Me
         </h1>
+        
         <div className="space-y-6">
           <p className="text-lg text-gray-700 dark:text-gray-300">
             I'm always interested in hearing about new opportunities, collaborations,
@@ -127,7 +128,7 @@ export default function Contact() {
             </p>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
