@@ -139,14 +139,20 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    if (error.status === 404) {
-      message = "404 - Page Not Found";
-      details = "Sorry, the page you are looking for does not exist.";
-    } else {
-      message = "Error";
-      details = error.statusText || details;
+    switch (error.status) {
+      case 404:
+        message = "404 - Page Not Found";
+        details = "Sorry, the page you are looking for does not exist.";
+        break;
+      case 403:
+        message = "403 - Forbidden";
+        details = "You don't have permission to access this page.";
+        break;
+      default:
+        message = `${error.status} Error`;
+        details = error.statusText || details;
     }
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (import.meta.env.DEV && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }

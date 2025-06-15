@@ -14,23 +14,31 @@ export function BlogProvider({ children }: BlogContextProps) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     fetch("/blog/blog-index.json", {
+      signal: controller.signal,
       headers: {
         "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
       },
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch blog posts");
+        if (!res.ok) throw new Error(`Failed to fetch blog posts: ${res.status}`);
         return res.json() as Promise<BlogMeta[]>;
       })
       .then((data) => {
-        setPosts(data);
+        setPosts(data.sort((a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime()));
         setLoading(false);
       })
       .catch((err: Error) => {
-        setError(err);
+        if (err.name !== 'AbortError') {
+          console.error('Blog fetch error:', err);
+          setError(err);
+        }
         setLoading(false);
       });
+
+    return () => controller.abort();
   }, []);
 
   return (
