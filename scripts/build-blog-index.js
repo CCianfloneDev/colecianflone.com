@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const BLOG_DIR = path.join(__dirname, "../public/blog"); // Directory containing Markdown blog posts
 const BLOG_HTML_DIR = path.join(__dirname, "../public/blog-content"); // Directory to output HTML files
 const BLOG_IMAGES_DIR = path.join(__dirname, "../public/blog-images"); // Directory for blog post images
-const OUTPUT_FILE = path.join(BLOG_DIR, "blog-index.json");
+const OUTPUT_FILE = path.join(__dirname, "../app/blog/blog-index.json"); // Output file for blog index
 
 function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");
@@ -26,12 +26,17 @@ function formatDate(date) {
 }
 
 async function buildIndex() {
-  // Ensure both blog and HTML directories exist
+  // Ensure blog, HTML, and app/blog directories exist
   if (!fs.existsSync(BLOG_DIR)) {
     fs.mkdirSync(BLOG_DIR, { recursive: true });
   }
   if (!fs.existsSync(BLOG_HTML_DIR)) {
     fs.mkdirSync(BLOG_HTML_DIR, { recursive: true });
+  }
+
+  const appBlogDir = path.dirname(OUTPUT_FILE);
+  if (!fs.existsSync(appBlogDir)) {
+    fs.mkdirSync(appBlogDir, { recursive: true });
   }
 
   const files = await fg("*.md", { cwd: BLOG_DIR });
