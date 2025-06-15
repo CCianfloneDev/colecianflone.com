@@ -2,4 +2,14 @@ User-agent: *
 Allow: /
 Crawl-delay: 1
 
+# Sitemaps
 Sitemap: https://colecianflone.com/sitemap.xml
+
+# RSS Feed
+Allow: /rss.xml
+
+# Important pages for indexing
+Allow: /blog/
+Allow: /projects/
+Allow: /about/
+Allow: /contact/
