@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
   return getBaseMeta({
     title: "Cole Cianflone | Software Developer in Winnipeg",
     description:
-      "Winnipeg-based software developer specializing in full-stack development. Building modern applications with React, TypeScript, and .NET.",
+      "Winnipeg-based software developer specializing in full-stack development.",
     url: "https://colecianflone.com",
     keywords:
       "Cole Cianflone, Winnipeg Software Developer, Full Stack Developer Manitoba, React Developer, TypeScript Developer, .NET Developer Winnipeg, Software Engineer Canada",
@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12">
+    <section className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -52,6 +52,6 @@ export default function Home() {
         <div className="absolute inset-0 rounded-full shadow-inner"></div>
       </div>
       <AboutSection />
-    </main>
+    </section>
   );
 }
