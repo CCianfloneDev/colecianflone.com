@@ -159,6 +159,7 @@ Visit [http://localhost:3000](http://localhost:3000 "View your portfolio site lo
   /components/   # Reusable UI components
   /routes/       # Page components and routing
   /types/        # TypeScript type definitions
+  /blog/         # Blog index JSON file
 /.react-router/  # React Router configuration (git ignored)
 /.src-images/    # Source images for blog posts (original files) (files git ignored)
 .wrangler/       # Cloudflare Workers configuration (git ignored)
@@ -168,10 +169,16 @@ public/
   /blog-content/ # Generated HTML versions of blog posts
   /blog-images/  # Converted WebP images in multiple sizes
   /fonts/        # Self-hosted Inter font files (woff2)
+  sitemap.xml    # Auto-generated sitemap
+  rss.xml        # Auto-generated RSS feed
 build/           # Production build output (git ignored)
   /client/       # Client-side bundles
   /server/       # Server-side rendering
 scripts/         # Build and optimization scripts
+  build-blog-index.js    # Generates blog index and HTML
+  convert-blog-image.js  # Converts images to WebP
+  generate-rss.js        # Creates RSS feed
+  generate-sitemap.js    # Creates sitemap
 ```
 
 The structure is intentionally straightforward—no unnecessarily complex folder hierarchies to navigate.
@@ -207,11 +214,12 @@ All blog posts live in `/public/blog/` as Markdown files. The workflow is beauti
    ```
 
 4. **What happens automatically:**
-   - Your source image converts to three WebP sizes (400px, 800px, 1200px wide)
+   - Your source image converts to three WebP sizes (400px, 800px, 1200px wide) using Sharp
    - Image paths are automatically added to your blog post's frontmatter
-   - Markdown files convert to optimized HTML
-   - Blog index updates with all metadata
-   - Everything gets optimized for performance
+   - Markdown files convert to optimized HTML with proper heading anchors
+   - Blog index updates with all metadata and structured data
+   - RSS feed generates automatically with all blog posts
+   - Sitemap updates to include new content
 
 No database to maintain, no image resizing to handle, no manual WebP conversion—just write your content and add your original image.
 
@@ -260,6 +268,14 @@ Here's what powers this portfolio and why each piece matters:
 - **[github-slugger](https://github.com/Flet/github-slugger "github-slugger - Generate URL slugs like GitHub")** - Generates heading anchor links
 - **[html-minifier-terser](https://github.com/terser/html-minifier-terser "html-minifier-terser - Minify HTML files")** - Minifies HTML for performance
 - **[fast-glob](https://github.com/mrmlnc/fast-glob "fast-glob - Fast and efficient glob library")** - Efficient file finding for blog posts
+- **[sharp](https://sharp.pixelplumbing.com/ "Sharp - High performance image processing")** - Image optimization and WebP conversion
+
+**Performance Features:**
+- **Skeleton Loading Components** - Smooth loading states for better UX
+- **Mobile-Optimized Animations** - Hardware-accelerated transitions
+- **RSS Feed Generation** - Automatic feed creation for blog subscribers
+- **Sitemap Generation** - Auto-updated XML sitemap for SEO
+- **Image Optimization Pipeline** - Automatic WebP conversion with multiple sizes
 
 The beauty of this setup? Everything has generous free tiers, and you'll realistically never hit the limits for a personal portfolio.
 
