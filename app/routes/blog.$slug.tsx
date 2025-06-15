@@ -3,22 +3,54 @@ import { useParams, useNavigate } from "react-router";
 import type { RouteMetaArgs } from "../types/routes";
 import { getBaseMeta } from "../types/meta";
 import { useBlogContext } from "../components/BlogContext";
-import BlogPost from "~/components/BlogPost";
+import BlogPost from "../components/BlogPost";
 import type { BlogPostSchema } from '../types/schema';
 
-export function meta({ params }: RouteMetaArgs) {
-  const { posts } = useBlogContext();
-  const post = posts.find(p => p.slug === params.slug);
+// Import the blog data directly for meta function
+import blogIndexData from "../blog/blog-index.json";
 
-  // Return metadata based on the post data
-  return getBaseMeta({
-    title: post ? `${post.title} | Cole Cianflone` : "Blog Post | Cole Cianflone",
-    description: post?.description || "Read this blog post on my portfolio.",
-    url: `https://colecianflone.com/blog/${params.slug}`,
+export function meta({ params }: RouteMetaArgs) {
+  // Use the imported blog data directly
+  const post = blogIndexData.find(p => p.slug === params.slug);
+
+  if (!post) {
+    return getBaseMeta({
+      title: "Blog Post Not Found | Cole Cianflone",
+      description: "The requested blog post could not be found.",
+      url: `https://colecianflone.com/blog/${params.slug}`,
+      type: "article",
+    });
+  }
+
+  const metaArgs = {
+    title: `${post.title} | Cole Cianflone`,
+    description: post.description || "Read this blog post on my portfolio.",
+    url: `https://colecianflone.com/blog/${post.slug}`,
     type: "article",
-    keywords: "Software Development, Web Development, Technical Tutorial, React, TypeScript, Cloudflare Workers, Cole Cianflone Blog",
-    ...(post?.image?.sizes.largeUrl && { image: post.image.sizes.largeUrl })
-  });
+    keywords: [
+      post.title,
+      post.description,
+      "Software Development",
+      "Web Development",
+      "Technical Tutorial",
+      "Cole Cianflone Blog",
+      "Blog",
+      "Article"
+    ].filter(Boolean).join(", "),
+  } as {
+    title: string;
+    description: string;
+    url: string;
+    type: string;
+    keywords: string;
+    image?: string;
+  };
+
+  if (post.image?.sizes.largeUrl) {
+    metaArgs.image = `https://colecianflone.com${post.image.sizes.largeUrl}`;
+  }
+
+  return getBaseMeta(metaArgs);
 }
 
 export default function BlogSlug() {
@@ -27,56 +59,6 @@ export default function BlogSlug() {
   const { posts, loading } = useBlogContext();
   const [content, setContent] = useState<string>("");
   const post = posts.find((p) => p.slug === slug);
-
-  // Update metadata when post data is available
-  useEffect(() => {
-    if (post) {
-      const genericKeywords = [
-        "Software Development",
-        "Web Development",
-        "Technical Tutorial",
-        "Cole Cianflone Blog",
-        "Blog",
-        "Article"
-      ];
-      const metaArgs = {
-        title: `${post.title} | Cole Cianflone`,
-        description: post.description || "Read this blog post on my portfolio.",
-        url: `https://colecianflone.com/blog/${post.slug}`,
-        type: "article",
-        keywords: [
-          post.title,
-          post.description,
-          ...genericKeywords
-        ].filter(Boolean).join(", "),
-      };
-
-      // Only add image if it exists
-      if (post.image?.sizes.largeUrl) {
-        metaArgs.url = post.image.sizes.largeUrl;
-      }
-
-      const metaTags = getBaseMeta(metaArgs);
-
-      // Update each meta tag
-      metaTags.forEach(tag => {
-        if ('title' in tag) {
-          document.title = tag.title;
-        } else {
-          const attributeKey = Object.keys(tag)[0];
-          const attributeValue = tag[attributeKey as keyof typeof tag];
-          const selector = attributeKey === 'name' || attributeKey === 'property' 
-            ? `meta[${attributeKey}="${attributeValue}"]`
-            : `meta[${attributeKey}]`;
-          
-          const element = document.querySelector(selector);
-          if (element) {
-            element.setAttribute('content', tag.content || '');
-          }
-        }
-      });
-    }
-  }, [post]);
 
   useEffect(() => {
     if (post) {
@@ -165,7 +147,6 @@ export default function BlogSlug() {
 
   return (
     <article className="space-y-6">
-      {/* BlogPosting JSON-LD for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
