@@ -43,7 +43,7 @@
     "wrangler": "^4.20.0"
   },
   "scripts": {
-    "prebuild": "node scripts/convert-blog-image.js && node scripts/build-blog-index.js && node scripts/generate-sitemap.js",
+    "prebuild": "node scripts/convert-blog-image.js && node scripts/build-blog-index.js && node scripts/generate-sitemap.js && node scripts/generate-rss.js",
     "build": "react-router build",
     "cf-typegen": "wrangler types && react-router typegen",
     "check": "tsc && react-router build && wrangler deploy --dry-run",
