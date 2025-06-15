@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const RSS_URL = "https://colecianflone.com/rss.xml";
-const blogIndexPath = path.join(process.cwd(), "public/blog/blog-index.json");
+const blogIndexPath = path.join(process.cwd(), "app/blog/blog-index.json");
 
 async function generateRSS() {
   const blogPosts = JSON.parse(fs.readFileSync(blogIndexPath, "utf8"));
