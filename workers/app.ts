@@ -1,4 +1,5 @@
 import { createRequestHandler } from "react-router";
+import type { ServerBuild } from "react-router";
 
 declare module "react-router" {
   export interface AppLoadContext {
@@ -10,7 +11,10 @@ declare module "react-router" {
 }
 
 const requestHandler = createRequestHandler(
-  () => import("virtual:react-router/server-build"),
+  async () => {
+    const build = await import("virtual:react-router/server-build");
+    return build as ServerBuild;
+  },
   import.meta.env.MODE,
 );
 
