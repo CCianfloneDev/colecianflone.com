@@ -1,4 +1,3 @@
-import React from "react";
 import type { BlogPostProps } from "../types/components";
 
 export default function BlogPost({ post, content, onBack }: BlogPostProps) {
@@ -8,7 +7,7 @@ export default function BlogPost({ post, content, onBack }: BlogPostProps) {
         <button
           className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
                      dark:hover:text-blue-300 font-medium flex items-center gap-2
-                     transition-colors"
+                     transition-colors cursor-pointer"
           onClick={onBack}
           aria-label="Return to blog list"
         >
