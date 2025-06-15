@@ -38,4 +38,4 @@ ${urls.map((url) => {
 `;
 
 fs.writeFileSync(path.join(process.cwd(), "public/sitemap.xml"), sitemap);
-console.log("Sitemap generated at public/sitemap.xml");
+console.log("✅ Sitemap generated at public/sitemap.xml");
