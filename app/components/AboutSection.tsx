@@ -50,7 +50,7 @@ export default function AboutSection() {
           <a
             href="https://www.linkedin.com/in/colecianflone/"
             className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
-                     dark:hover:text-blue-300 font-medium transition-colors"
+                     dark:hover:text-blue-300 font-medium transition-colors cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Cole's LinkedIn profile"
@@ -61,7 +61,7 @@ export default function AboutSection() {
           <a
             href="https://github.com/CCianfloneDev"
             className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
-                     dark:hover:text-blue-300 font-medium transition-colors"
+                     dark:hover:text-blue-300 font-medium transition-colors cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Cole's GitHub profile"
