@@ -122,9 +122,7 @@ export default function App() {
       <body>
         <NavBar />
         <main className="min-h-screen">
-          <div className="max-w-2xl mx-auto px-6 py-8 min-h-[calc(100vh-4rem)]">
-            <Outlet />
-          </div>
+          <Outlet />
         </main>
         <ScrollRestoration />
         <Scripts />

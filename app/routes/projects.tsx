@@ -1,3 +1,4 @@
+import { ResponsiveContainer } from "~/components/ResponsiveContainer";
 import { getBaseMeta } from "../types/meta";
 import type { CollectionPageSchema } from "../types/schema";
 
@@ -34,51 +35,52 @@ export default function Projects() {
   };
 
   return (
-    <section>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(projectsSchema),
-        }}
-      />
-      <div className="max-w-2xl mx-auto px-6 py-8">
-        <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-          Projects
-        </h1>
-        <div className="space-y-6">
-          <p className="text-lg text-gray-700 dark:text-gray-300">
-            Here are some of the projects I've been working on. Each project represents
-            a unique challenge and learning opportunity in my development journey.
-          </p>
-          
-          {/* Project showcase would go here */}
-          <div className="text-center py-12">
-            <div className="text-gray-500 dark:text-gray-400 mb-4">
-              <svg
-                className="w-16 h-16 mx-auto mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-            </div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-              Projects Coming Soon
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              I'm currently working on showcasing my best projects here.
-              Check back soon!
+    <ResponsiveContainer maxWidth="3xl">
+      <div role="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(projectsSchema),
+          }}
+        />
+        <header className="mb-12">
+          <h1 className="text-4xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+            Projects
+          </h1>
+          <div className="space-y-6">
+            <p className="text-lg lg:text-xl 3xl:text-2xl text-gray-700 dark:text-gray-300">
+              Here are some of the projects I've been working on. Each project represents
+              a unique challenge and learning opportunity in my development journey.
             </p>
           </div>
+        </header>
+        
+        <div className="text-center py-16 lg:py-24">
+          <div className="text-gray-500 dark:text-gray-400 mb-6">
+            <svg
+              className="w-16 h-16 lg:w-20 lg:h-20 3xl:w-24 3xl:h-24 mx-auto mb-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              />
+            </svg>
+          </div>
+          <h2 className="text-xl lg:text-2xl 3xl:text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+            Projects Coming Soon
+          </h2>
+          <p className="text-lg 3xl:text-xl text-gray-600 dark:text-gray-400">
+            I'm currently working on showcasing my best projects here.
+            Check back soon!
+          </p>
         </div>
       </div>
-    </section>
+    </ResponsiveContainer>
   );
 }

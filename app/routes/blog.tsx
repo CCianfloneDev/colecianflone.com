@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from "react-router";
+import { ResponsiveContainer } from "~/components/ResponsiveContainer";
 import { BlogProvider, useBlogContext } from "../components/BlogContext";
 import BlogList from "../components/BlogList";
 import { getBaseMeta } from "../types/meta";
@@ -59,35 +60,36 @@ function BlogContent() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
-        <PageHeaderSkeleton />
-        <BlogListSkeleton />
-      </div>
+      <ResponsiveContainer maxWidth="4xl">
+        <>
+          <PageHeaderSkeleton />
+          <BlogListSkeleton />
+        </>
+      </ResponsiveContainer>
     );
   }
 
   if (error) {
     return (
-      <div className="text-center py-12">
-        <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-          Error Loading Blog
-        </h1>
-        <p className="text-lg text-red-600 dark:text-red-400 mb-6">
-          Unable to load blog posts. Please try again later.
-        </p>
-        <button
-          onClick={() => window.location.reload()}
-          className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
-                   dark:hover:text-blue-300 font-medium transition-colors"
-        >
-          Refresh Page
-        </button>
-      </div>
+      <ResponsiveContainer maxWidth="4xl">
+        <div className="text-center py-12">
+          <p className="text-red-600 dark:text-red-400 mb-4">
+            Unable to load blog posts. Please try again later.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
+                     dark:hover:text-blue-300 font-medium transition-colors"
+          >
+            Refresh Page
+          </button>
+        </div>
+      </ResponsiveContainer>
     );
   }
 
   return (
-    <>
+    <ResponsiveContainer maxWidth="4xl">
       {isBlogIndex && (
         <script
           type="application/ld+json"
@@ -98,20 +100,22 @@ function BlogContent() {
       )}
       {isBlogIndex ? (
         <>
-          <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-            Blog
-          </h1>
-          <div className="space-y-6">
-            <p className="text-lg text-gray-700 dark:text-gray-300">
-              Thoughts, tutorials and insights about software development.
-            </p>
-            <BlogList posts={posts} />
+          <div role="banner">
+            <h1 className="text-4xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+              Blog
+            </h1>
+            <div className="space-y-6">
+              <p className="text-lg lg:text-xl 3xl:text-2xl text-gray-700 dark:text-gray-300">
+                Thoughts, tutorials and insights about software development.
+              </p>
+            </div>
           </div>
+          <BlogList posts={posts} />
         </>
       ) : (
         <Outlet />
       )}
-    </>
+    </ResponsiveContainer>
   );
 }
 

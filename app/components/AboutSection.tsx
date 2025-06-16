@@ -15,17 +15,17 @@ export default function AboutSection() {
   };
 
   return (
-    <section className="max-w-2xl mx-auto px-6 py-8">
+    <div className="max-w-2xl mx-auto">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(personSchema)
         }}
       />
-      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-        About Me
+      <h1 className="text-4xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+        Cole Cianflone
       </h1>
-      <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300">
+      <div className="space-y-6 text-lg lg:text-xl 3xl:text-2xl text-gray-700 dark:text-gray-300">
         <p>
           Hi, I'm Cole Cianflone, a passionate Software Developer with experience in
           full-stack development, cloud technologies, and DevOps practices. I
@@ -71,6 +71,6 @@ export default function AboutSection() {
           . Let's build something great together!
         </p>
       </div>
-    </section>
+    </div>
   );
 }

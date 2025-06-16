@@ -21,6 +21,24 @@ body {
   }
 }
 
+/* Container constraints for large screens */
+.container-responsive {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 1400px; /* Prevent content from spreading too wide on 4K */
+}
+
+/* Enhanced prose styling for large screens */
+.prose-responsive {
+  @apply prose prose-slate dark:prose-invert;
+  max-width: 75ch; /* Optimal reading line length */
+}
+
+@media (min-width: 1920px) {
+  .prose-responsive {
+    @apply text-lg leading-relaxed;
+  }
+}
+
 /* Add page transition animation */
 @keyframes fadeIn {
   from {
@@ -67,5 +85,17 @@ main article {
   main section,
   main article {
     animation: none;
+  }
+}
+
+/* Large screen typography scaling */
+@media (min-width: 2560px) {
+  html {
+    font-size: 18px; /* Base font size increase for 4K */
+  }
+  
+  .container-responsive {
+    max-width: 1600px;
+    @apply px-12;
   }
 }

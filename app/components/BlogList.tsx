@@ -9,23 +9,23 @@ export default function BlogList({ posts }: BlogListProps) {
   }
 
   return (
-    <ul className="space-y-6">
+    <ul className="space-y-4 lg:space-y-6">
       {posts.map((post) => (
         <li
           key={post.slug}
-          className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 
+          className="p-4 lg:p-6 3xl:p-8 rounded-lg border border-gray-200 dark:border-gray-700 
                      hover:border-blue-500 dark:hover:border-blue-400 
                      transition-all duration-200 hover:shadow-lg 
                      bg-white dark:bg-gray-800"
         >
           <Link
-            className="block space-y-3"
+            className="block space-y-2 lg:space-y-3"
             to={`/blog/${post.slug}`}
             aria-label={`Read ${post.title}`}
             title={post.description || `Read ${post.title}`}
           >
             {post.image && post.image.sizes && (
-              <div className="aspect-w-16 aspect-h-9 mb-4 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+              <div className="aspect-w-16 aspect-h-9 mb-3 lg:mb-4 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
                 <picture>
                   <source
                     srcSet={`${post.image.sizes.smallUrl} 400w,
@@ -48,23 +48,23 @@ export default function BlogList({ posts }: BlogListProps) {
                 </picture>
               </div>
             )}
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 
+            <h2 className="text-xl lg:text-2xl 3xl:text-3xl font-bold text-gray-900 dark:text-white hover:text-blue-600 
                          dark:hover:text-blue-400 transition-colors">
               {post.title}
             </h2>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+            <div className="text-sm lg:text-sm 3xl:text-base text-gray-600 dark:text-gray-400">
               {post.date}
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2 lg:space-y-3">
               {post.description && (
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p className="text-sm lg:text-base 3xl:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                   {post.description}
                 </p>
               )}
               {post.readTime && (
-                <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                <div className="text-xs lg:text-sm 3xl:text-base text-gray-600 dark:text-gray-400 flex items-center gap-2">
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 lg:w-4 lg:h-4 3xl:w-5 3xl:h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
