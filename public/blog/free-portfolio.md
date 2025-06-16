@@ -8,7 +8,8 @@ description: >-
 readTime: 12-minute read
 image:
   alt: >-
-    A meme of a distracted boyfriend turning his back to VPC/Shared hosting and looking at Cloudflare workers.
+    A meme of a distracted boyfriend turning his back to VPC/Shared hosting and
+    looking at Cloudflare workers.
   sizes:
     smallUrl: /blog-images/free-portfolio-small.webp
     mediumUrl: /blog-images/free-portfolio-medium.webp
