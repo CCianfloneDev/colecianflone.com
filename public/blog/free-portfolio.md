@@ -18,9 +18,9 @@ image:
 
 # How I Built My Portfolio Site for $0
 
-Like most developers, I needed a portfolio site but kept putting it off because of the hosting costs. It wasn't that I couldn't afford $5-15 a month, but paying ongoing fees for a personal site that might get a handful of visitors felt unnecessary. You know how it goes: $5 here for hosting, $10 there for a domain, maybe another $15 for a CDN. The costs add up quickly for something that isn't generating revenue.
+Like most developers, I wanted a portfolio site but but paying ongoing fees for a personal site that might get a handful of visitors felt unnecessary. There are lots of cheap options ($5-10 monthly), but still, why?? The costs add up quickly for something that isn't generating revenue.
 
-I kept thinking there had to be a better way and started exploring different options. Initially, I looked into VPC solutions thinking I could set up something more cost-effective than shared hosting, but honestly, it felt like overkill for a simple portfolio site. While cloud providers have reasonable free tiers, I found myself drawn to Cloudflare Workers' straightforward limit of 100,000 requests per day rather than trying to decode complex free tier restrictions and bandwidth calculations.
+I kept thinking there had to be a better way and started exploring different options. Initially, I looked into using a VPC thinking I could set up something more cost-effective than shared hosting, but honestly it's overkill for a simple portfolio site. While cloud providers have reasonable free tiers, I found myself drawn to Cloudflare Workers' straightforward limit of 100,000 requests per day rather than trying to decode complex free tier restrictions and bandwidth calculations, or worry about hardening a server because I didn't want to pay for easy but more expensive shared hosting.
 
 What I'll show you is how to build a portfolio site that costs nothing to run (no hosting fees, no monthly bills, nothing). The only optional cost is a custom domain, which you can purchase through Cloudflare for around $10-15 per year. You can skip that entirely and use their free subdomain if you prefer.
 
@@ -30,7 +30,7 @@ This approach also works well for testing side project ideas without committing 
 
 **My Story & Experience:**
 - [Why This Matters (Beyond Just Saving Money)](#why-this-matters-beyond-just-saving-money "Learn about the benefits beyond cost savings")
-- [My Experience with VPC (And Why They Weren't Right for Me)](#my-experience-with-VPC-and-why-they-werent-right-for-me "Why I chose against VPC hosting solutions")
+- [My Experience with VPC (And Why They Weren't Right for Me)](#my-experience-with-vpc-and-why-they-werent-right-for-me "Why I chose against VPC hosting solutions")
 - [The "Aha" Moment with Cloudflare Workers](#the-aha-moment-with-cloudflare-workers "Discovering Cloudflare Workers' generous free tier")
 - [What I Actually Built](#what-i-actually-built "Overview of the final portfolio site features")
 - [Performance Optimizations That Made a Difference](#performance-optimizations-that-made-a-difference "Key optimizations for speed and user experience")
@@ -53,33 +53,33 @@ Sure, avoiding monthly bills is nice, but there are other benefits that made thi
 
 If you're working on side projects, starting with free infrastructure means you can actually test ideas without committing to ongoing costs before you even know if anyone cares about what you're building. This removes the financial barrier to experimentation.
 
-Working within the constraints of free tiers taught me more about web performance and deployment than I expected. Instead of just throwing more resources at problems, I had to understand how things actually work.
+Learning a new tool and way of deployment is always good, why not?
 
-Once it's set up, there's practically nothing to maintain. No servers to update, no security patches to worry about, no monitoring dashboards to check obsessively.
+Once it's set up, there's practically nothing to maintain. No servers to update, no security patches to worry about, no monitoring dashboards.
 
-My requirements were straightforward: look decent and professional, load reasonably fast, cost nothing to maintain, be easy to update when I actually write something, and handle blog posts without needing a database.
+My requirements were straightforward: look decent and professional, load fast, cost nothing to maintain, be easy to update when I actually write something, and handle blog posts without needing a database.
 
 ## My Experience with VPC (And Why They Weren't Right for Me)
 
 Before landing on Cloudflare Workers, I spent some time exploring VPC setups thinking they might be more cost-effective than traditional shared hosting solutions. On paper, it seemed like I could get more control over my infrastructure while potentially saving money.
 
-I should mention that I'm comfortable with VPC setups and have used them for other projects before. This wasn't about technical capability. After diving into the documentation and pricing for various cloud providers[\^6] [\^7]. I realized VPC setups were probably overkill for what I needed. The free tiers looked generous on the surface with decent compute instances, storage, and CDN usage. But here's what made me hesitate.
+I should mention that I'm comfortable with VPC setups and have used them for other projects before. This wasn't about technical capability. After diving into the documentation and pricing for various cloud providers[\^6] [\^7], I realized VPC setups were probably overkill for what I needed. The free tiers looked generous on the surface with decent compute instances, storage, and CDN usage. But here's what made me hesitate.
 
-Setting up VPC infrastructure, configuring security groups, managing instances felt like I'd need to become a cloud architect just to host a simple site. The free tiers have so many moving parts and conditions that I spent more time trying to understand billing scenarios than actually building anything.
+Setting up VPC infrastructure, configuring security groups, managing instances, it was all just more work than I wanted to do and I didn't want to worry about it just to host a simple site. The free tiers have so many moving parts and conditions that I spent more time trying to understand billing scenarios and setting up alerts, than actually building anything.
 
 While free tiers include bandwidth, I couldn't shake the feeling that I might accidentally exceed limits or misconfigure something and get hit with surprise charges. Even with managed services, there's still updates, security considerations, and monitoring to think about.
 
 What drew me to Cloudflare Workers was the simplicity. 100,000 requests per day felt like a number I could understand and feel comfortable with. With VPC hosting, I kept second-guessing whether my usage patterns would stay within free tier bounds or if some configuration mistake would cost me money.
 
-For a personal portfolio that might get a few visitors per day, I wanted something I could set up once and forget about, not something that required me to become an infrastructure expert.
+For a personal portfolio that might get a few visitors per day, I wanted something I could set up once and forget about, something that wouldn't require me to become an infrastructure expert.
 
 ## The "Aha" Moment with Cloudflare Workers
 
-Cloudflare Workers seemed intimidating at first, like something only big companies would use. But when I actually looked at their free tier limits, it was quite generous. According to Cloudflare's official documentation[\^2], the free tier includes 100,000 requests per day, global edge network distribution, custom domains with free SSL, no servers to manage, and a built-in CDN.
+It was like the goldie locks story, kinda? I knew that comitting to $5-10 monthly for shared hosting would be too expensive in the long run, but configuring a VPC was over-complicated for what I wanted. Cloudflare workers, were just right.
 
-For a personal portfolio that might get a few dozen visits a day, those limits are more than sufficient.
+I actually first started with Cloudflare pages, which is more simple to setup but I was experiencing some issues with my blog and how CF pages serves content. CF workers also seemed cool because it supports SSR and full-stack applications. I gave it a shot after looking a their free tier limits, it was quite generous. According to Cloudflare's official documentation[\^2], the free tier includes 100,000 requests per day, global edge network distribution, custom domains with free SSL, no servers to manage, and a built-in CDN.
 
-The setup turned out to be more straightforward than I expected once I stopped overthinking it. Instead of trying to recreate a traditional server setup, I focused on building something that works with their edge-first approach.
+For a personal portfolio that might get a few dozen visits a day, those limits are more than sufficient. Free to host, and I could sleep easy at night knowing I didn't have to worry about accidentally configuring my server and being hacked or whatever. Thats all I wanted.
 
 ## What I Actually Built
 
@@ -93,21 +93,19 @@ Cost-wise, there are no monthly hosting costs, no build pipeline costs, no CDN c
 
 ## Performance Optimizations That Made a Difference
 
-Working within free tier constraints pushed me toward some solutions that actually worked quite well. I spent time optimizing especially for mobile users and people on slower connections[\^3] [\^9].
+Working within free tier constraints pushed me toward some solutions that actually worked quite well. I spent time optimizing especially for mobile users and people on slower connections.
 
-Instead of relying on external services, everything gets pre-rendered and served from Cloudflare's edge network. HTML loads quickly, images are optimized automatically through a conversion script that creates WebP versions at different sizes, and I'm using self-hosted fonts that load from the same domain, which cuts down on external requests.
+Instead of relying on external services, everything gets pre-rendered and served from Cloudflare's edge network. HTML loads quickly, images are optimized automatically through a conversion script that creates WebP versions at different sizes.
 
-I also added skeleton loaders to improve how fast things feel while content loads, and spent time optimizing for Core Web Vitals, particularly trying to improve Largest Contentful Paint (LCP) and First Contentful Paint (FCP) times.
+I also added skeleton loaders to improve how fast things feel while content loads, and spent time optimizing for Core Web Vitals, particularly trying to improve Largest Contentful Paint (LCP) and First Contentful Paint (FCP) times[\^3].
 
-The result is solid loading speeds globally, not just from whatever region you're in.
-
-Font loading can make sites feel sluggish. Instead of linking to Google Fonts, I went with self-hosted Inter fonts[\^4] that I subsetted to just the characters I actually need. to just the characters I actually need. This cuts the font file size significantly, which is especially important for mobile users or anyone on limited data plans.
+Font loading can make sites feel sluggish. Instead of linking to Google Fonts, I went with self-hosted Inter fonts[\^4] that I subsetted to just the characters I actually need. This cuts the font file size significantly, which is especially important for mobile users or anyone on limited data plans.
 
 I kept the JavaScript minimal but added some touches that improve the overall feel. Simple page transitions, dark mode that follows system preferences, skeleton loaders for better perceived performance, responsive design that works well on everything from phones to large monitors, and basic loading states so things don't feel broken.
 
 The build process handles the standard SEO components automatically. It generates sitemaps, creates Open Graph tags for social sharing, adds basic structured data, optimizes images with proper alt tags, and creates RSS feeds.
 
-I worked to get good Lighthouse[\^5] scores and solid mobile performance, covering the basics that search engines care about., covering the basics that search engines care about.
+I worked to get good Lighthouse[\^5] scores and solid mobile performance, covering the basics that search engines care about.
 
 ## Why This Approach Works for SaaS Ideas
 
@@ -143,7 +141,12 @@ Ready to build your own? Here's everything you need, step by step.
 
 ## Prerequisites
 
-Make sure you have these installed: [Node.js](https://nodejs.org/ "Download Node.js - JavaScript runtime for building applications") (v14 or higher), [Visual Studio Code](https://code.visualstudio.com/ "Download Visual Studio Code - Free source code editor") (or whatever editor you prefer), [npm](https://www.npmjs.com/ "npm - Node.js package manager") (comes with Node.js), a GitHub account (for version control), and a Cloudflare account (free tier works perfectly).
+Make sure you have these installed:
+- [Node.js](https://nodejs.org/ "Download Node.js - JavaScript runtime for building applications") (v14 or higher)
+- [Visual Studio Code](https://code.visualstudio.com/ "Download Visual Studio Code - Free source code editor") (or whatever editor you prefer)
+- [npm](https://www.npmjs.com/ "npm - Node.js package manager") (comes with Node.js)
+- A GitHub account (for version control)
+- A Cloudflare account (free tier works perfectly)
 
 ## Installation
 
@@ -217,7 +220,12 @@ Your content here.
 
 Add your image to the `.src-images/` folder and name it the same as your slug (e.g., `my-post.png`). The system supports `.png`, `.jpg`, and `.jpeg` formats.
 
-Run `npm run build` and the system automatically converts your image to WebP in three sizes, converts your markdown to HTML, updates the blog index, regenerates the RSS feed, and updates the sitemap.
+Run `npm run build` and the system automatically:
+- Converts your image to WebP in three sizes
+- Converts your markdown to HTML
+- Updates the blog index
+- Regenerates the RSS feed
+- Updates the sitemap
 
 No database, no manual image resizing. Just write and build.
 
@@ -268,7 +276,12 @@ The free `.workers.dev` subdomain works perfectly fine if you want to keep it co
 
 ## Configuration Files
 
-These files control the build and deployment process: `wrangler.json` for Cloudflare Workers settings, `vite.config.ts` for build configuration, `tsconfig.json` for TypeScript settings, `package.json` for dependencies and scripts, and `worker-configuration.d.ts` for TypeScript types for Workers.
+These files control the build and deployment process:
+- `wrangler.json` for Cloudflare Workers settings
+- `vite.config.ts` for build configuration
+- `tsconfig.json` for TypeScript settings
+- `package.json` for dependencies and scripts
+- `worker-configuration.d.ts` for TypeScript types for Workers
 
 You probably won't need to modify these unless you want to customize specific behavior.
 
@@ -280,4 +293,3 @@ You probably won't need to modify these unless you want to customize specific be
 [\^6]: [AWS Free Tier Details](https://aws.amazon.com/free/)
 [\^7]: [Google Cloud Free Tier](https://cloud.google.com/free)
 [\^8]: [Cloudflare D1 Query Performance Improvements](https://developers.cloudflare.com/changelog/2025-01-07-d1-faster-query/)
-[\^9]: [WebPageTest – Real User Performance Testing](https://www.webpagetest.org/)
