@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const BLOG_DIR = path.join(__dirname, "../public/blog"); // Directory containing Markdown blog posts
 const BLOG_HTML_DIR = path.join(__dirname, "../public/blog-content"); // Directory to output HTML files
 const BLOG_IMAGES_DIR = path.join(__dirname, "../public/blog-images"); // Directory for blog post images
-const OUTPUT_FILE = path.join(__dirname, "../app/blog/blog-index.json"); // Output file for blog index
+const OUTPUT_FILE = path.join(__dirname, "../app/data/blog-index.json"); // Output file for blog index
 
 function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");

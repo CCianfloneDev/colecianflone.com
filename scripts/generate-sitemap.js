@@ -9,7 +9,7 @@ const staticRoutes = [
   "contact",
 ];
 
-const blogIndexPath = path.join(process.cwd(), "public/blog/blog-index.json");
+const blogIndexPath = path.join(process.cwd(), "app/data/blog-index.json");
 const blogPosts = fs.existsSync(blogIndexPath)
   ? JSON.parse(fs.readFileSync(blogIndexPath, "utf8"))
   : [];

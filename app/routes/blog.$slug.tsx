@@ -8,7 +8,7 @@ import type { BlogPostSchema } from '../types/schema';
 import { BlogPostSkeleton } from "../components/Skeleton";
 
 // Import the blog data directly for meta function
-import blogIndexData from "../blog/blog-index.json";
+import blogIndexData from "../data/blog-index.json";
 
 export function meta({ params }: RouteMetaArgs) {
   // Use the imported blog data directly
