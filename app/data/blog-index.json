@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Skip the Monthly Bills: How I Built My Portfolio Site for Absolutely Free",
+    "slug": "free-portfolio",
+    "file": "free-portfolio.md",
+    "htmlFile": "free-portfolio.html",
+    "date": "16-Jun-2025",
+    "isoDate": "2025-06-16T23:33:05.465Z",
+    "description": "A practical guide to building a portfolio site with React, TypeScript and Cloudflare Workers—completely free. Includes performance optimization tips and deployment strategies.",
+    "readTime": "12-minute read",
+    "image": {
+      "alt": "A meme of a distracted boyfriend turning his back to VPC/Shared hosting and looking at Cloudflare workers.",
+      "sizes": {
+        "smallUrl": "/blog-images/free-portfolio-small.webp",
+        "mediumUrl": "/blog-images/free-portfolio-medium.webp",
+        "largeUrl": "/blog-images/free-portfolio-large.webp"
+      }
+    }
+  }
+]
