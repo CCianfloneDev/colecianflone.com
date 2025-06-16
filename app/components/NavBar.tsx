@@ -25,11 +25,15 @@ export default function NavBar() {
               <li key={item.to} className="min-w-[60px] 3xl:min-w-[80px] 4xl:min-w-[100px] text-center">
                 <Link
                   to={item.to}
-                  className={`navbar-link block font-medium transition-colors duration-200 text-responsive-lg ${
-                    location.pathname === item.to
+                  className={`navbar-link block font-medium transition-colors duration-200 ${
+                    item.isBrand 
+                      ? "text-responsive-lg font-bold bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-md hover:bg-slate-300 dark:hover:bg-slate-600" 
+                      : "text-responsive-lg"
+                  } ${
+                    location.pathname === item.to && !item.isBrand
                       ? "active"
                       : ""
-                  } ${item.isBrand ? "font-bold" : ""}`}
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -44,7 +48,7 @@ export default function NavBar() {
             {/* Brand/Logo */}
             <Link
               to="/"
-              className="navbar-link text-xl font-bold transition-colors"
+              className="navbar-link text-xl font-bold bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-md hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors"
               onClick={closeMenu}
             >
               Cole
