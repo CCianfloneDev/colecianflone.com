@@ -16,6 +16,7 @@
     "publish": true
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.16",
     "fast-glob": "^3.3.3",
     "github-slugger": "^2.0.0",

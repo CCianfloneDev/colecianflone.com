@@ -14,6 +14,9 @@ export default {
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '0.75rem' }],
       },
+      aspectRatio: {
+        '16/9': '16 / 9',
+      },
       container: {
         center: true,
         padding: {
@@ -30,12 +33,14 @@ export default {
           lg: '1024px',
           xl: '1280px',
           '2xl': '1400px',
-          '3xl': '1600px',
+          '3xl': '1920px',
+          '4xl': '2560px',
         },
       },
     },
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }
