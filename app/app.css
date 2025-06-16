@@ -88,12 +88,67 @@ main article {
   }
 }
 
-/* Large screen typography scaling */
-@media (min-width: 2560px) {
-  html {
-    font-size: 18px; /* Base font size increase for 4K */
+/* Large screen typography scaling  */
+.text-responsive-lg {
+  @apply text-lg lg:text-xl;
+}
+
+@media (min-width: 1920px) {
+  .text-responsive-lg {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
   }
-  
+}
+
+.text-responsive-xl {
+  @apply text-xl lg:text-2xl;
+}
+
+@media (min-width: 1920px) {
+  .text-responsive-xl {
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+  }
+}
+
+.heading-responsive {
+  @apply text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight;
+}
+
+@media (min-width: 1920px) {
+  .heading-responsive {
+    font-size: 3rem; /* 48px - more conservative than 60px */
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 2560px) {
+  .heading-responsive {
+    font-size: 3.5rem; /* 56px - more conservative than 72px */
+    line-height: 1.1;
+  }
+}
+
+.spacing-responsive {
+  @apply space-y-6 lg:space-y-8;
+}
+
+@media (min-width: 1920px) {
+  .spacing-responsive {
+    gap: 2rem; /* 32px - slightly less than before */
+  }
+  .spacing-responsive > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 2rem;
+  }
+}
+
+/* Consistent interactive element styles */
+.link-primary {
+  @apply text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors cursor-pointer;
+}
+
+/* Large screen typography scaling - removed base font size increase */
+@media (min-width: 2560px) {
   .container-responsive {
     max-width: 1600px;
     @apply px-12;
