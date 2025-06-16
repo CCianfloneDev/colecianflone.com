@@ -1,0 +1,108 @@
+[
+  {
+    "id": "timeline-1",
+    "type": "education",
+    "institution": "Red River College Polytechnic",
+    "title": "Business Information Technology",
+    "location": "Winnipeg, MB",
+    "startDate": "2021",
+    "endDate": "2023",
+    "current": false,
+    "description": "Focused on software engineering, algorithms, and data structures. Participated in hackathons and open-source projects.",
+    "skills": ["Java", "Python", "Data Structures", "Algorithms", "Software Engineering"],
+    "image": {
+      "url": "/timeline/red-river-college.webp",
+      "alt": "Red River College Polytechnic logo"
+    },
+    "website": "https://www.rrc.ca"
+  },
+  {
+    "id": "timeline-2", 
+    "type": "work",
+    "company": "StandardAero",
+    "title": "Summer Student - IT Operations Support",
+    "location": "Winnipeg, MB",
+    "startDate": "2022-04",
+    "endDate": "2022-08",
+    "current": false,
+    "description": "Used RSAT tools to facilitate technical support with end-users for various support related tickets through different streams of communication such as, in person, email, phone, and JIRA ticketing platform. Consulted users to procure specific devices and equipment for different use-cases, performed installs, repairs, and upgrades on Laptop and Desktop computers as necessary.",
+    "skills": ["RSAT Tools", "JIRA", "Technical Support", "Hardware Installation", "Windows Administration", "Help Desk"],
+    "achievements": [
+      "Provided multi-channel technical support (in-person, email, phone, JIRA)",
+      "Managed device procurement and equipment consultation",
+      "Performed hardware installs, repairs, and upgrades"
+    ],
+    "image": {
+      "url": "/timeline/standardaero.webp",
+      "alt": "StandardAero logo"
+    },
+    "website": "https://www.standardaero.com"
+  },
+  {
+    "id": "timeline-3",
+    "type": "work",
+    "company": "StandardAero",
+    "title": "Application Developer - Student (CO-OP)",
+    "location": "Winnipeg, MB",
+    "startDate": "2023-01",
+    "endDate": "2023-08",
+    "current": false,
+    "description": "As a student programmer I did my CO-OP through RRCPolytech as a full time developer working on StandardAero's global production ERP. My main duties were to fix bugs, minor enhancements, and to rewrite legacy VB6 applications into VB.Net. This was a foundational learning experience for me as it was my first introduction to software development outside of my college education and I learned so much. From the dialogue and workflow between business analysts, programmers, and database administrators, to honing my programming and technical skill sets.",
+    "skills": ["VB6", "Visual Studio", "VB.NET", "VBA", "SQL Navigator", "Crystal Reports", "Windows Forms", "Oracle PL/SQL", "Microsoft Office"],
+    "achievements": [
+      "Fixed bugs and implemented minor enhancements to production ERP",
+      "Rewrote legacy VB6 applications to VB.NET",
+      "Learned enterprise development workflow and best practices"
+    ],
+    "image": {
+      "url": "/timeline/standardaero.webp",
+      "alt": "StandardAero logo"
+    },
+    "website": "https://www.standardaero.com"
+  },
+  {
+    "id": "timeline-4",
+    "type": "work",
+    "company": "StandardAero",
+    "title": "Application Developer - Student (part time)",
+    "location": "Remote",
+    "startDate": "2023-08",
+    "endDate": "2023-12",
+    "current": false,
+    "description": "As I returned back to finish my final college term I remained on the team part-time remotely continuing the same duties.",
+    "skills": ["VB.NET", "Visual Studio", "Oracle PL/SQL", "Crystal Reports", "Remote Work"],
+    "achievements": [
+      "Successfully balanced part-time development work with final college term",
+      "Maintained productivity while working remotely"
+    ],
+    "image": {
+      "url": "/timeline/standardaero.webp",
+      "alt": "StandardAero logo"
+    },
+    "website": "https://www.standardaero.com"
+  },
+  {
+    "id": "timeline-5",
+    "type": "work",
+    "company": "StandardAero",
+    "title": "Software Developer",
+    "location": "Winnipeg, MB",
+    "startDate": "2023-12",
+    "endDate": null,
+    "current": true,
+    "description": "I work closely with business analysts and database administrators to develop and enhance StandardAero's global production ERP. My role involves everything from bug fixes and system enhancements to major projects, overhauls, and new feature development—always with a focus on quality, efficiency, and security. Beyond programming, I support business analysts and project managers by estimating levels of effort, investigating issues, assessing feasibility, and occasionally conducting requirement analysis. In addition to ERP work, I'm trained in Oracle APEX, a low-code web application builder primarily used for reporting.",
+    "skills": ["Visual Studio", "VB.NET", "VB6", "Oracle PL/SQL", "Crystal Reports", "Windows Forms", "WPF", "Oracle APEX", "JIRA", "Microsoft Office"],
+    "achievements": [
+      "Develop and enhance global production ERP system",
+      "Lead major projects, overhauls, and new feature development",
+      "Support business analysts with effort estimation and feasibility analysis",
+      "Train new developers and maintain technical documentation",
+      "Work directly with end users on Oracle APEX reporting solutions"
+    ],
+    "image": {
+      "url": "/timeline/standardaero.webp",
+      "alt": "StandardAero logo"
+    },
+    "website": "https://www.standardaero.com"
+  }
+]
