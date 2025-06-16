@@ -9,6 +9,14 @@ export type PersonType = {
   url: string;
   jobTitle?: string;
   sameAs?: string[];
+  worksFor?: {
+    "@type": "Organization";
+    name: string;
+  };
+  alumniOf?: Array<{
+    "@type": "EducationalOrganization";
+    name: string;
+  }>;
 };
 
 // For root-level use with @context
