@@ -5,6 +5,8 @@ import BlogList from "../components/BlogList";
 import { getBaseMeta } from "../types/meta";
 import type { CollectionPageSchema } from "../types/schema";
 import { PageHeaderSkeleton, BlogListSkeleton } from "../components/Skeleton";
+import PageHeader from "../components/PageHeader";
+import Button from "../components/Button";
 
 export function meta() {
   return getBaseMeta({
@@ -76,13 +78,11 @@ function BlogContent() {
           <p className="text-red-600 dark:text-red-400 mb-4">
             Unable to load blog posts. Please try again later.
           </p>
-          <button
+          <Button
             onClick={() => window.location.reload()}
-            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
-                     dark:hover:text-blue-300 font-medium transition-colors"
           >
             Refresh Page
-          </button>
+          </Button>
         </div>
       </ResponsiveContainer>
     );
@@ -101,14 +101,10 @@ function BlogContent() {
       {isBlogIndex ? (
         <>
           <div role="banner">
-            <h1 className="text-4xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-              Blog
-            </h1>
-            <div className="space-y-6">
-              <p className="text-lg lg:text-xl 3xl:text-2xl text-gray-700 dark:text-gray-300">
-                Thoughts, tutorials and insights about software development.
-              </p>
-            </div>
+            <PageHeader 
+              title="Blog"
+              description="Thoughts, tutorials and insights about software development."
+            />
           </div>
           <BlogList posts={posts} />
         </>

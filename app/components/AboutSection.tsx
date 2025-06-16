@@ -1,5 +1,6 @@
 import React from "react";
 import type { PersonSchema } from "../types/schema";
+import Button from "./Button";
 
 export default function AboutSection() {
   const personSchema: PersonSchema = {
@@ -15,17 +16,17 @@ export default function AboutSection() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-none">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(personSchema)
         }}
       />
-      <h1 className="text-4xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+      <h1 className="heading-responsive mb-6 text-center lg:text-left">
         Cole Cianflone
       </h1>
-      <div className="space-y-6 text-lg lg:text-xl 3xl:text-2xl text-gray-700 dark:text-gray-300">
+      <div className="spacing-responsive text-responsive-lg text-gray-700 dark:text-gray-300">
         <p>
           Hi, I'm Cole Cianflone, a passionate Software Developer with experience in
           full-stack development, cloud technologies, and DevOps practices. I
@@ -47,27 +48,25 @@ export default function AboutSection() {
         </p>
         <p>
           Feel free to connect with me on{" "}
-          <a
+          <Button 
             href="https://www.linkedin.com/in/colecianflone/"
-            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
-                     dark:hover:text-blue-300 font-medium transition-colors cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Cole's LinkedIn profile"
+            className="inline"
           >
             LinkedIn
-          </a>{" "}
+          </Button>{" "}
           or{" "}
-          <a
+          <Button 
             href="https://github.com/CCianfloneDev"
-            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 
-                     dark:hover:text-blue-300 font-medium transition-colors cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Cole's GitHub profile"
+            className="inline"
           >
             GitHub
-          </a>
+          </Button>
           . Let's build something great together!
         </p>
       </div>

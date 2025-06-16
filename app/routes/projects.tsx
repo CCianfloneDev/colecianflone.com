@@ -1,6 +1,7 @@
 import { ResponsiveContainer } from "~/components/ResponsiveContainer";
 import { getBaseMeta } from "../types/meta";
 import type { CollectionPageSchema } from "../types/schema";
+import PageHeader from "../components/PageHeader";
 
 export function meta() {
   return getBaseMeta({
@@ -43,20 +44,13 @@ export default function Projects() {
             __html: JSON.stringify(projectsSchema),
           }}
         />
-        <header className="mb-12">
-          <h1 className="text-4xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-            Projects
-          </h1>
-          <div className="space-y-6">
-            <p className="text-lg lg:text-xl 3xl:text-2xl text-gray-700 dark:text-gray-300">
-              Here are some of the projects I've been working on. Each project represents
-              a unique challenge and learning opportunity in my development journey.
-            </p>
-          </div>
-        </header>
+        <PageHeader 
+          title="Projects"
+          description="Here are some of the projects I've been working on. Each project represents a unique challenge and learning opportunity in my development journey."
+        />
         
         <div className="text-center py-16 lg:py-24">
-          <div className="text-gray-500 dark:text-gray-400 mb-6">
+          <div className="text-gray-400 dark:text-gray-500 mb-8">
             <svg
               className="w-16 h-16 lg:w-20 lg:h-20 3xl:w-24 3xl:h-24 mx-auto mb-6"
               fill="none"
@@ -72,12 +66,11 @@ export default function Projects() {
               />
             </svg>
           </div>
-          <h2 className="text-xl lg:text-2xl 3xl:text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-responsive-xl font-semibold text-gray-900 dark:text-white mb-4">
             Projects Coming Soon
           </h2>
-          <p className="text-lg 3xl:text-xl text-gray-600 dark:text-gray-400">
-            I'm currently working on showcasing my best projects here.
-            Check back soon!
+          <p className="text-responsive-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+            I'm currently working on showcasing my best projects here. Check back soon to see what I've been building!
           </p>
         </div>
       </div>

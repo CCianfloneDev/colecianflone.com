@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router";
 
 const navItems = [
-  { to: "/", label: "Cole" },
+  { to: "/", label: "Cole", isBrand: true },
   { to: "/projects", label: "Projects" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
@@ -17,11 +17,11 @@ export default function NavBar() {
             <li key={item.to} className="min-w-[60px] 3xl:min-w-[80px] 4xl:min-w-[100px] text-center">
               <Link
                 to={item.to}
-                className={`block font-medium transition-colors duration-200 text-base lg:text-lg 3xl:text-2xl 4xl:text-3xl ${
+                className={`block font-medium transition-colors duration-200 text-responsive-lg ${
                   location.pathname === item.to
                     ? "text-blue-600 dark:text-blue-400 underline"
                     : "text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
-                }`}
+                } ${item.isBrand ? "font-bold" : ""}`}
               >
                 {item.label}
               </Link>

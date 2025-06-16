@@ -9,7 +9,7 @@ export default function BlogList({ posts }: BlogListProps) {
   }
 
   return (
-    <ul className="space-y-4 lg:space-y-6">
+    <ul className="spacing-responsive">
       {posts.map((post) => (
         <li
           key={post.slug}
@@ -19,7 +19,7 @@ export default function BlogList({ posts }: BlogListProps) {
                      bg-white dark:bg-gray-800"
         >
           <Link
-            className="block space-y-2 lg:space-y-3"
+            className="block spacing-responsive"
             to={`/blog/${post.slug}`}
             aria-label={`Read ${post.title}`}
             title={post.description || `Read ${post.title}`}
@@ -48,14 +48,14 @@ export default function BlogList({ posts }: BlogListProps) {
                 </picture>
               </div>
             )}
-            <h2 className="text-xl lg:text-2xl 3xl:text-3xl font-bold text-gray-900 dark:text-white hover:text-blue-600 
+            <h2 className="text-responsive-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 
                          dark:hover:text-blue-400 transition-colors">
               {post.title}
             </h2>
             <div className="text-sm lg:text-sm 3xl:text-base text-gray-600 dark:text-gray-400">
               {post.date}
             </div>
-            <div className="space-y-2 lg:space-y-3">
+            <div className="spacing-responsive">
               {post.description && (
                 <p className="text-sm lg:text-base 3xl:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                   {post.description}
