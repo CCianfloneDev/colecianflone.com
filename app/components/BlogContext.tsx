@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { BlogContextType, BlogContextProps } from "../types/components";
 import type { BlogMeta } from "../types/blog";
-import blogIndexData from "../blog/blog-index.json";
+import blogIndexData from "../data/blog-index.json";
 
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
 
