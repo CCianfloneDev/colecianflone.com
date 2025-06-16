@@ -19,7 +19,7 @@ export default function BlogList({ posts }: BlogListProps) {
                      bg-white dark:bg-gray-800"
         >
           <Link
-            className="block spacing-responsive"
+            className="block spacing-responsive blog-list-link"
             to={`/blog/${post.slug}`}
             aria-label={`Read ${post.title}`}
             title={post.description || `Read ${post.title}`}

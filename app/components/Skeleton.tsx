@@ -24,7 +24,7 @@ export function SkeletonItem({ className = "", width, height }: SkeletonItemProp
 
   return (
     <div
-      className={`bg-gray-300 dark:bg-gray-700 rounded ${className}`}
+      className={`bg-gray-300 dark:bg-gray-700 rounded animate-pulse ${className}`}
       style={style}
     />
   );
@@ -48,7 +48,7 @@ export default function Skeleton({
       case "rectangular":
         return "rounded-lg";
       case "card":
-        return "rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6";
+        return "rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800";
       default:
         return "rounded";
     }
@@ -73,20 +73,39 @@ export default function Skeleton({
 
   if (variant === "card") {
     return (
-      <div className={`${containerClass} ${className}`}>
-        <div className={getVariantClasses()}>
-          <div className="space-y-3">
-            <SkeletonItem className="aspect-w-16 aspect-h-9 mb-4" height="12rem" />
-            <SkeletonItem width="75%" height="1.5rem" />
-            <SkeletonItem width="25%" height="1rem" />
-            <div className="space-y-2">
-              <SkeletonItem height="1rem" />
-              <SkeletonItem width="83%" height="1rem" />
+      <li className={className}>
+        <div className="p-4 lg:p-6 rounded-lg border border-gray-200 dark:border-gray-700 
+                       bg-white dark:bg-gray-800 transition-all duration-200">
+          <div className="block spacing-responsive">
+            {/* Blog post image skeleton - using modern aspect ratio */}
+            <div className="aspect-[16/9] mb-3 lg:mb-4 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
+              <SkeletonItem className="w-full h-full !animate-none" />
             </div>
-            <SkeletonItem width="8rem" height="1rem" />
+            
+            {/* Title skeleton - matches text-responsive-xl: text-xl lg:text-2xl */}
+            <SkeletonItem className="h-7 lg:h-8 mb-2" width="85%" />
+            
+            {/* Date skeleton */}
+            <SkeletonItem className="h-4 mb-3" width="30%" />
+            
+            {/* Description and read time in spacing-responsive container */}
+            <div className="spacing-responsive">
+              {/* Description skeleton */}
+              <div className="space-y-2">
+                <SkeletonItem className="h-4 lg:h-5" width="100%" />
+                <SkeletonItem className="h-4 lg:h-5" width="90%" />
+                <SkeletonItem className="h-4 lg:h-5" width="75%" />
+              </div>
+              
+              {/* Read time skeleton */}
+              <div className="flex items-center gap-2">
+                <SkeletonItem className="h-3 w-3 rounded-full !animate-none" />
+                <SkeletonItem className="h-3" width="4rem" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </li>
     );
   }
 
@@ -119,27 +138,40 @@ export default function Skeleton({
 // Preset skeleton layouts
 export function BlogListSkeleton() {
   return (
-    <div className="space-y-6">
+    <ul className="spacing-responsive">
       {[1, 2, 3].map((i) => (
         <Skeleton key={i} variant="card" />
       ))}
-    </div>
+    </ul>
   );
 }
 
 export function BlogPostSkeleton() {
   return (
-    <div className="space-y-6">
+    <div className="spacing-responsive">
+      {/* Back button skeleton - matches Button component */}
       <div className="flex items-center mb-6">
-        <Skeleton width="8rem" height="1.5rem" />
+        <SkeletonItem className="h-10 px-4 rounded-md" width="12rem" />
       </div>
+
+      {/* Header skeleton - matches BlogPost header */}
+      <div className="mb-8">
+        {/* Title skeleton - matches heading-responsive */}
+        <SkeletonItem className="h-12 lg:h-16 mb-4" width="80%" />
+        {/* Date skeleton - matches text-responsive-lg */}
+        <SkeletonItem className="h-6 lg:h-7" width="25%" />
+      </div>
+
+      {/* Content skeleton - matches prose layout */}
       <div className="space-y-4">
-        <Skeleton width="75%" height="2rem" />
-        <Skeleton width="25%" height="1rem" />
-      </div>
-      <div className="space-y-3">
-        <Skeleton lines={3} />
-        <Skeleton width="80%" />
+        <SkeletonItem className="h-5" width="100%" />
+        <SkeletonItem className="h-5" width="95%" />
+        <SkeletonItem className="h-5" width="88%" />
+        <SkeletonItem className="h-5" width="92%" />
+        <div className="py-2" />
+        <SkeletonItem className="h-5" width="90%" />
+        <SkeletonItem className="h-5" width="85%" />
+        <SkeletonItem className="h-5" width="78%" />
       </div>
     </div>
   );
@@ -147,9 +179,14 @@ export function BlogPostSkeleton() {
 
 export function PageHeaderSkeleton() {
   return (
-    <div className="space-y-6">
-      <Skeleton width="25%" height="2rem" />
-      <Skeleton width="75%" lines={2} />
+    <div className="mb-8 lg:mb-12">
+      {/* Title skeleton - matches heading-responsive */}
+      <SkeletonItem className="h-12 lg:h-16 mb-4 lg:mb-6" width="60%" />
+      {/* Description skeleton */}
+      <div className="space-y-2">
+        <SkeletonItem className="h-6 lg:h-7" width="85%" />
+        <SkeletonItem className="h-6 lg:h-7" width="65%" />
+      </div>
     </div>
   );
 }

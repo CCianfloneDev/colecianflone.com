@@ -36,7 +36,7 @@ export default function Projects() {
   };
 
   return (
-    <ResponsiveContainer maxWidth="3xl">
+    <ResponsiveContainer maxWidth="6xl">
       <div role="main">
         <script
           type="application/ld+json"
@@ -49,10 +49,10 @@ export default function Projects() {
           description="Here are some of the projects I've been working on. Each project represents a unique challenge and learning opportunity in my development journey."
         />
         
-        <div className="text-center py-16 lg:py-24">
-          <div className="text-gray-400 dark:text-gray-500 mb-8">
+        <div className="text-center section-spacing">
+          <div className="text-gray-400 dark:text-gray-500 mb-8 lg:mb-12">
             <svg
-              className="w-16 h-16 lg:w-20 lg:h-20 3xl:w-24 3xl:h-24 mx-auto mb-6"
+              className="w-16 h-16 lg:w-20 lg:h-20 3xl:w-24 3xl:h-24 4xl:w-28 4xl:h-28 mx-auto mb-6 lg:mb-8"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ export default function Projects() {
               />
             </svg>
           </div>
-          <h2 className="text-responsive-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-responsive-xl font-semibold text-gray-900 dark:text-white mb-4 lg:mb-6">
             Projects Coming Soon
           </h2>
           <p className="text-responsive-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto">

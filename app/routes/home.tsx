@@ -29,8 +29,8 @@ export default function Home() {
   };
 
   return (
-    <ResponsiveContainer maxWidth="4xl" className="py-8 lg:py-12 3xl:py-16">
-      <div role="main" className="space-y-8 lg:space-y-0">
+    <ResponsiveContainer maxWidth="6xl" className="section-spacing">
+      <div className="page-content">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

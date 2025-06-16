@@ -17,18 +17,18 @@ export default function NavBar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-gray-100 dark:bg-gray-900 shadow">
-      <div className="max-w-6xl 3xl:max-w-8xl 4xl:max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 3xl:px-16 4xl:px-20">
+      <div className="max-w-6xl 3xl:max-w-8xl 4xl:max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 3xl:px-12 4xl:px-16">
         {/* Desktop Navigation */}
         <div className="hidden md:block">
-          <ul className="flex items-center justify-start h-16 3xl:h-24 4xl:h-28 gap-8 lg:gap-12 3xl:gap-20 4xl:gap-24">
+          <ul className="flex items-center justify-start h-16 3xl:h-20 4xl:h-24 gap-8 lg:gap-12 3xl:gap-16 4xl:gap-20">
             {navItems.map((item) => (
               <li key={item.to} className="min-w-[60px] 3xl:min-w-[80px] 4xl:min-w-[100px] text-center">
                 <Link
                   to={item.to}
-                  className={`block font-medium transition-colors duration-200 text-responsive-lg ${
+                  className={`navbar-link block font-medium transition-colors duration-200 text-responsive-lg ${
                     location.pathname === item.to
-                      ? "text-blue-600 dark:text-blue-400 underline"
-                      : "text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+                      ? "active"
+                      : ""
                   } ${item.isBrand ? "font-bold" : ""}`}
                 >
                   {item.label}
@@ -44,7 +44,7 @@ export default function NavBar() {
             {/* Brand/Logo */}
             <Link
               to="/"
-              className="text-xl font-bold text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors"
+              className="navbar-link text-xl font-bold transition-colors"
               onClick={closeMenu}
             >
               Cole
@@ -90,10 +90,10 @@ export default function NavBar() {
                   <li key={item.to}>
                     <Link
                       to={item.to}
-                      className={`block px-4 py-3 text-lg font-medium transition-colors ${
+                      className={`navbar-link block px-4 py-3 text-lg font-medium transition-colors ${
                         location.pathname === item.to
-                          ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
-                          : "text-gray-800 hover:text-blue-600 hover:bg-gray-50 dark:text-gray-200 dark:hover:text-blue-400 dark:hover:bg-gray-800"
+                          ? "active bg-blue-50 dark:bg-blue-900/20"
+                          : "hover:bg-gray-50 dark:hover:bg-gray-800"
                       }`}
                       onClick={closeMenu}
                     >

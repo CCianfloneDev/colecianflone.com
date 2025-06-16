@@ -35,56 +35,98 @@ body {
 
 @media (min-width: 1920px) {
   .prose-responsive {
-    @apply text-lg leading-relaxed;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 }
 
-/* Add page transition animation */
+/* Consistent link styling - exclude nav links and blog list links */
+a:not(.button):not(.nav-link):not(.navbar-link):not(.blog-list-link) {
+  @apply text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-2 transition-colors;
+}
+
+/* Button base styles */
+.button {
+  @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.button-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+}
+
+.button-secondary {
+  @apply bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600;
+}
+
+/* Navigation link styling */
+.nav-link {
+  @apply text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors;
+}
+
+.nav-link.active {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+/* Navbar link styling - no underlines */
+.navbar-link {
+  @apply text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors no-underline;
+}
+
+.navbar-link.active {
+  @apply text-blue-600 dark:text-blue-400 underline;
+}
+
+/* Page transitions - smooth fade without layout shift */
+.page-content {
+  animation: fadeIn 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+/* More aggressive targeting for better coverage */
+main > div,
+main section,
+main article {
+  animation: fadeIn 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(0.25rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Optimized animation for mobile */
-@keyframes fadeInMobile {
-  from {
-    opacity: 0;
   }
   to {
     opacity: 1;
   }
 }
 
-/* Apply animation to section and article elements within main */
-main section,
-main article {
-  animation: fadeIn 0.3s ease-out;
-  animation-fill-mode: both;
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-  transform: translateZ(0); /* Force hardware acceleration */
-}
-
-/* Mobile-specific optimizations */
+/* Mobile optimization - reduce animation on smaller screens and slower devices */
 @media (max-width: 768px) {
+  .page-content,
+  main > div,
   main section,
   main article {
-    animation: fadeInMobile 0.2s ease-out; /* Simpler animation on mobile */
-    will-change: opacity; /* Only animate opacity on mobile */
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
   }
 }
 
 /* Respect user's reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
+  .page-content,
+  main > div,
   main section,
   main article {
     animation: none;
+  }
+}
+
+/* Optimize for lower-end devices */
+@media (hover: none) and (pointer: coarse) {
+  .page-content,
+  main > div,
+  main section,
+  main article {
+    animation-duration: 0.2s;
   }
 }
 
@@ -145,6 +187,54 @@ main article {
 /* Consistent interactive element styles */
 .link-primary {
   @apply text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors cursor-pointer;
+}
+
+/* Consistent spacing system */
+.section-spacing {
+  @apply py-8 lg:py-12;
+}
+
+@media (min-width: 1920px) {
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.content-spacing {
+  @apply space-y-6 lg:space-y-8;
+}
+
+@media (min-width: 1920px) {
+  .content-spacing {
+    gap: 2.5rem;
+  }
+  .content-spacing > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 2.5rem;
+  }
+}
+
+.card-spacing {
+  @apply p-6 lg:p-8;
+}
+
+@media (min-width: 1920px) {
+  .card-spacing {
+    padding: 2.5rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .card-spacing {
+    padding: 3rem;
+  }
 }
 
 /* Large screen typography scaling - removed base font size increase */

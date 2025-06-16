@@ -89,7 +89,7 @@ function BlogContent() {
   }
 
   return (
-    <ResponsiveContainer maxWidth="4xl">
+    <ResponsiveContainer maxWidth="6xl">
       {isBlogIndex && (
         <script
           type="application/ld+json"
