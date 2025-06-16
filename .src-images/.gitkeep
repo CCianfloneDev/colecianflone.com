@@ -1,0 +1,5 @@
+# This file ensures the .src-images directory is tracked by git
+# even when it's empty or when subdirectories are empty
+
+# Git doesn't track empty directories, so we use .gitkeep files
+# to force git to include them in the repository
