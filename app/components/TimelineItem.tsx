@@ -3,21 +3,13 @@ import type { TimelineItemProps } from '../types/timeline';
 import Button from './Button';
 
 export default function TimelineItem({ item, isLast }: TimelineItemProps) {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString + '-01'); // Add day for parsing
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
-      year: 'numeric' 
-    });
-  };
-
   const getTypeIcon = () => {
     switch (item.type) {
       case 'work':
         return (
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 00-2 2H10a2 2 0 00-2-2V6m8 0h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h2" />
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
           </svg>
         );
       case 'education':
@@ -67,12 +59,14 @@ export default function TimelineItem({ item, isLast }: TimelineItemProps) {
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <img 
-                  src={item.image.url} 
-                  alt={item.image.alt}
-                  className="w-8 h-8 lg:w-10 lg:h-10 rounded object-contain"
-                  loading="lazy"
-                />
+                {item.image && item.image.url && (
+                  <img 
+                    src={item.image.url} 
+                    alt={item.image.alt}
+                    className="w-8 h-8 lg:w-10 lg:h-10 rounded object-contain"
+                    loading="lazy"
+                  />
+                )}
                 <div>
                   <h3 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">
                     {item.title}
@@ -90,7 +84,7 @@ export default function TimelineItem({ item, isLast }: TimelineItemProps) {
             {/* Date range and current badge */}
             <div className="flex flex-col items-start lg:items-end gap-2">
               <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                {formatDate(item.startDate)} - {item.current ? 'Present' : formatDate(item.endDate!)}
+                {item.startDate} - {item.current ? 'Present' : item.endDate}
               </div>
               {item.current && (
                 <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -151,7 +145,7 @@ export default function TimelineItem({ item, isLast }: TimelineItemProps) {
                 size="sm"
                 className="text-sm"
               >
-                Learn More
+                {item.websiteText || "Learn More"}
                 <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
