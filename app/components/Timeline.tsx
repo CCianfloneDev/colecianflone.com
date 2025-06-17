@@ -10,7 +10,7 @@ export default function Timeline({ items, className = '' }: TimelineProps) {
   return (
     <div className={`relative ${className}`}>
       {/* Timeline line */}
-      <div className="absolute left-4 lg:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 dark:from-blue-400 dark:via-blue-500 dark:to-blue-600" />
+      <div className="absolute left-4 lg:left-6 top-8 lg:top-12 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 dark:from-blue-400 dark:via-blue-500 dark:to-blue-600" />
       
       <div className="space-y-8 lg:space-y-12">
         {sortedItems.map((item, index) => (
