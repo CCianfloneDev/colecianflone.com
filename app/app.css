@@ -10,6 +10,23 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Add scroll padding to account for sticky navbar */
+html {
+  scroll-padding-top: 4rem; /* Adjust based on your navbar height */
+}
+
+@media (min-width: 1920px) {
+  html {
+    scroll-padding-top: 5rem; /* 3xl:h-20 from NavBar */
+  }
+}
+
+@media (min-width: 2560px) {
+  html {
+    scroll-padding-top: 6rem; /* 4xl:h-24 from NavBar */
+  }
+}
+
 html,
 body {
   background-color: #fff;
