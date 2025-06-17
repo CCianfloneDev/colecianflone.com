@@ -1,4 +1,3 @@
-import React from 'react';
 import type { TimelineItemProps } from '../types/timeline';
 import Button from './Button';
 
