@@ -244,3 +244,37 @@ main article {
     @apply px-12;
   }
 }
+
+/* Typing animation - updated for precise text width */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 18ch; /* Exactly 18 characters for "Software Developer" */
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: currentColor;
+  }
+}
+
+.animate-typing {
+  animation: typing 2s steps(18, end) 0.5s forwards, blink-caret 1s step-end infinite 2.5s;
+  width: 0;
+  max-width: 18ch; /* Prevent any overflow */
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-typing {
+    animation: none;
+    width: 18ch;
+    border-right: none;
+  }
+}
