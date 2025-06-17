@@ -5,8 +5,8 @@ export interface TimelineItem {
   // Common fields
   title: string;
   location: string;
-  startDate: string; // YYYY-MM format
-  endDate: string | null; // null if current
+  startDate: string; // Display exactly as entered
+  endDate: string | null; // Display exactly as entered, null if current
   current: boolean;
   description: string;
   skills: string[];
@@ -15,6 +15,7 @@ export interface TimelineItem {
     alt: string;
   };
   website?: string | undefined;
+  websiteText?: string | undefined; // Descriptive text for the website link
   
   // Work-specific fields
   company?: string | undefined;
