@@ -1,7 +1,67 @@
+import { useEffect } from "react";
 import type { BlogPostProps } from "../types/components";
 import Button from "./Button";
 
 export default function BlogPost({ post, content, onBack }: BlogPostProps) {
+  // Handle hash navigation after content loads
+  useEffect(() => {
+    if (content && window.location.hash) {
+      // Small delay to ensure content is rendered
+      setTimeout(() => {
+        const targetElement = document.querySelector(window.location.hash);
+        if (targetElement) {
+          const navbarHeight =
+            window.innerWidth >= 2560
+              ? 96
+              : window.innerWidth >= 1920
+              ? 80
+              : 64;
+          const elementTop = targetElement.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: elementTop - navbarHeight,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    }
+  }, [content]);
+
+  // Handle anchor clicks to prevent CSS/JS scroll conflict on Firefox
+  useEffect(() => {
+    const handleAnchorClick = (e: Event) => {
+      const target = e.target as HTMLAnchorElement;
+      if (target.tagName === 'A' && target.hash && target.hash.startsWith('#')) {
+        const targetElement = document.querySelector(target.hash);
+        if (targetElement) {
+          e.preventDefault();
+          
+          // Temporarily remove scroll-margin to prevent Firefox double-offset
+          const originalScrollMargin = (targetElement as HTMLElement).style.scrollMarginTop;
+          (targetElement as HTMLElement).style.scrollMarginTop = '0';
+          
+          const navbarHeight = window.innerWidth >= 2560 ? 96 : window.innerWidth >= 1920 ? 80 : 64;
+          const elementTop = targetElement.getBoundingClientRect().top + window.scrollY;
+          
+          window.scrollTo({
+            top: elementTop - navbarHeight,
+            behavior: 'smooth'
+          });
+          
+          // Restore original scroll-margin after scrolling
+          setTimeout(() => {
+            (targetElement as HTMLElement).style.scrollMarginTop = originalScrollMargin;
+          }, 100);
+          
+          // Update URL hash
+          window.history.replaceState(null, '', target.hash);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+    return () => document.removeEventListener('click', handleAnchorClick);
+  }, [content]);
+
   return (
     <article className="spacing-responsive">
       <div className="flex items-center mb-6">
