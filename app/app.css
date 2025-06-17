@@ -10,20 +10,35 @@ html {
   scrollbar-gutter: stable;
 }
 
-/* Add scroll padding to account for sticky navbar */
-html {
-  scroll-padding-top: 4rem; /* Adjust based on your navbar height */
+/* Add scroll margin to blog post headings - more reliable across browsers */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  scroll-margin-top: 4rem;
 }
 
 @media (min-width: 1920px) {
-  html {
-    scroll-padding-top: 5rem; /* 3xl:h-20 from NavBar */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    scroll-margin-top: 5rem; /* 3xl:h-20 from NavBar */
   }
 }
 
 @media (min-width: 2560px) {
-  html {
-    scroll-padding-top: 6rem; /* 4xl:h-24 from NavBar */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    scroll-margin-top: 6rem; /* 4xl:h-24 from NavBar */
   }
 }
 
@@ -273,7 +288,8 @@ main article {
 }
 
 @keyframes blink-caret {
-  from, to {
+  from,
+  to {
     border-color: transparent;
   }
   50% {
@@ -282,7 +298,8 @@ main article {
 }
 
 .animate-typing {
-  animation: typing 2s steps(18, end) 0.5s forwards, blink-caret 1s step-end infinite 2.5s;
+  animation: typing 2s steps(18, end) 0.5s forwards,
+    blink-caret 1s step-end infinite 2.5s;
   width: 0;
   max-width: 18ch; /* Prevent any overflow */
 }
