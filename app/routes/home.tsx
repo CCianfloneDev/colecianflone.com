@@ -57,17 +57,15 @@ export default function Home() {
         />
 
         {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:space-x-8">
-          {/* Profile Image - Above text on mobile, left side on desktop */}
-          <div className="flex-shrink-0 text-center lg:text-left mb-8 lg:mb-0">
+        <div className="space-y-8 lg:space-y-12">
+          {/* Profile Image - Centered */}
+          <div className="flex justify-center">
             <div className="relative inline-block">
               <img
-                src="/profile-320w.webp"
-                srcSet="/profile-320w.webp 320w, /profile-640w.webp 640w, /profile-1024w.webp 1024w"
-                sizes="(max-width: 640px) 160px, 200px"
+                src="/profile.webp"
                 alt="Cole Cianflone"
-                width={200}
-                height={200}
+                width={256}
+                height={256}
                 fetchPriority="high"
                 loading="eager"
                 decoding="async"
@@ -78,8 +76,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* About Content - Below image on mobile, right side on desktop */}
-          <div className="flex-1">
+          {/* About Content - Left aligned and full width */}
+          <div>
             <AboutSection />
           </div>
         </div>
